@@ -9,7 +9,7 @@ export default function Home() {
         {/* Couple Names */}
         <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-rose-700">Amirul & Aisyah</h1>
         <p className="mt-3 text-lg sm:text-xl text-gray-600 italic">Together with their beloved families</p>
-    
+
         {/* Divider */}
         <div className="my-6 border-t border-rose-300 w-1/2 mx-auto" />
 
@@ -52,11 +52,9 @@ export default function Home() {
         </footer>
       </div>
     </div><RSVP></RSVP></>
+    
   );
-  
 }
-
-
 
 export function RSVP() {
   return (
@@ -183,6 +181,3 @@ export function RSVP() {
     </div>
   );
 }
-
-
-
