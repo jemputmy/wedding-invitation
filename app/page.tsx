@@ -8,7 +8,7 @@ export default function Home() {
         <iframe
           loading="lazy"
           className="absolute top-0 left-0 w-full h-full border-0"
-          src="https://www.canva.com/design/DAGlbdo33h8/6j4Mb4am-r5h9953hHdaFw/view?embed"
+          src="wedding.png"
           allowFullScreen />
       </div>
         <RSVPForm /></>
