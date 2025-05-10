@@ -8,7 +8,7 @@ export default function Home() {
         <iframe
           loading="lazy"
           className="absolute top-0 left-0 w-full h-full border-0"
-          src="https://www.canva.com/design/DAGnEt-03dE/1JhmLdglUra9Lr8UCy97mQ/view?embed"
+          src="https://www.canva.com/design/DAGlbdo33h8/6j4Mb4am-r5h9953hHdaFw/view?embed"
           allowFullScreen />
       </div>
         <RSVPForm /></>
