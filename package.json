@@ -13,6 +13,7 @@
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-howler": "^5.2.0",
     "supabase": "^2.22.12",
     "turbo": "^2.5.3",
     "use-sound": "^5.0.0"
@@ -22,6 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-howler": "^5.2.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
