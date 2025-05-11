@@ -1,10 +1,14 @@
 // app/page.tsx
-import { BoopButton } from "./elements/play-button/play-button.ui"
+'use client'
+import { useEffect, useState } from "react"
 import RSVPForm from "./elements/rsvp-form/rsvp-form.ui"
+import IsPlayMusicDialog from "./elements/play-button/play-button.ui"
+
+
 
 export default function Home() {
   return (
-    <><div className="relative w-full pt-[140.9524%] shadow-md rounded-lg overflow-hidden my-6">
+    <><div className="relative w-full pt-[140.9524%] shadow-md rounded-lg overflow-hidden mb-2">
       <iframe
         loading="lazy"
         className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none"
@@ -12,11 +16,15 @@ export default function Home() {
         allowFullScreen
       />
     </div>
-
-      <RSVPForm /></>
+ <div><RSVPForm /></div>
+     <IsPlayMusicDialog></IsPlayMusicDialog>
+    </>
 
 
 
   )
 
 }
+
+
+
