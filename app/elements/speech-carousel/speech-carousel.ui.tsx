@@ -34,7 +34,6 @@ export function SpeechCarousel() {
     }, [])
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-white to-gray-100 px-4 overflow-hidden">
             <div className="w-full max-w-2xl">
                 <div className="my-8 text-2xl md:text-4xl italic underline text-gray-900 text-center">
                     Senarai Ucapan
@@ -60,7 +59,6 @@ export function SpeechCarousel() {
                     </div>
                 </Carousel>
             </div>
-        </div>
     )
 }
 

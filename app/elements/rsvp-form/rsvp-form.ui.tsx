@@ -51,42 +51,41 @@ export default function RSVPForm() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-white to-gray-100 py-8 px-4">
       <Card className="w-full max-w-md text-gray-900">
         <CardHeader>
-          <CardTitle className="text-gray-900">Wedding RSVP</CardTitle>
-          <CardDescription className="text-gray-700">Let us know if you’ll be attending 💌</CardDescription>
+          <CardTitle className="text-5xl text-gray-900 text-center italic underline">RSVP</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleForm} className="space-y-4">
             <div>
-              <Label htmlFor="name" className="text-gray-900 mb-2">Your Name</Label>
+              <Label htmlFor="name" className="text-base font-mono text-gray-900 mb-2">Nama Anda</Label>
               <Input id="name" name="name" placeholder="e.g. Amirul Irfan" required />
             </div>
 
             <div>
-              <Label htmlFor="speech" className="text-gray-900 mb-2">Speech</Label>
+              <Label htmlFor="speech" className="text-base font-mono text-gray-900 mb-2">Ucapan</Label>
               <Textarea
                 id="speech"
                 name="speech"
-                placeholder="Optional"
-                rows={4}
+                placeholder="Ucapan..."
+              rows={4}
+               className="min-h-[120px]"
               />
             </div>
 
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 my-6">
               <Checkbox id="isAttend" name="isAttend"  checked={isAttend}
                 onCheckedChange={handleIsAttend}/>
-              <Label htmlFor="isAttend" className="text-gray-900">Will you be attending?</Label>
+              <Label htmlFor="isAttend" className="text-base font-mono text-gray-900">Saya Hadir</Label>
             </div>
 
             {
               isAttend ? <div>
-                <Label htmlFor="total_person" className="text-gray-900 mb-2">Number of Guests (including you)</Label>
+                <Label htmlFor="total_person" className="text-base font-mono text-gray-900 mb-2">Bilangan rombongan (temasuk anda)</Label>
                 <Select name="total_person" required>
                   <SelectTrigger id="total_person">
-                    <SelectValue placeholder="Select number of guests" />
+                    <SelectValue  placeholder="Sila pilih bilangan rombongan" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-black">
                     {Array.from({ length: 10 }, (_, i) => (
@@ -100,15 +99,14 @@ export default function RSVPForm() {
             }
 
 
-            <Button type="submit" className="w-full bg-pink-500 text-white hover:bg-pink-600">
-              {loading ? "Submitting..." : "Submit RSVP"}
+            <Button type="submit" className="w-full bg-pink-500 text-white hover:bg-pink-600 my-5">
+              {loading ? "Sedang Menghatntar..." : "Hantar RSVP"}
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="text-center text-sm text-muted-foreground">
-          Thank you for your response!
+        <CardFooter className="font-mono text-center text-sm text-muted-foreground">
+          Terima Kasih Atas Respon Anda!
         </CardFooter>
       </Card>
-    </div>
   )
 }
