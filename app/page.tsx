@@ -5,6 +5,7 @@ import RSVPForm from "./elements/rsvp-form/rsvp-form.ui";
 import IsPlayMusicDialog from "./elements/play-button/play-button.ui";
 import SpeechCarousel from "./elements/speech-carousel/speech-carousel.ui";
 import { CanvaDesign } from "./elements/canva-design/canva-dessign.ui";
+import BaseBackground from "./elements/base-background/base-background.ui";
 
 export default function Home() {
   return (
@@ -34,15 +35,3 @@ export default function Home() {
   );
 }
 
-export function BaseBackground() {
-  return (
-    <div className="relative w-full pt-[140.9524%] shadow-md rounded-lg overflow-hidden mb-2">
-      <iframe
-        loading="lazy"
-        className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none"
-        src="https://www.canva.com/design/DAGnIEn52ZM/uU18XQWx86Cp76ckSHkxyw/view?embed"
-        allowFullScreen
-      />
-    </div>
-  );
-}
