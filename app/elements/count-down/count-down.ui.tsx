@@ -2,20 +2,16 @@
 
 import * as React from "react";
 import Countdown, { CountdownRenderProps } from "react-countdown";
-import { Calendar } from "@/components/ui/calendar";  // Assuming this is a wrapper around React Date Picker
-import { toZonedTime } from "date-fns-tz";
 
 export default function CountdownTimer() {
-  const eventDate = new Date("2025-09-20T08:00:00Z");
-  const eventDateInTimezone = toZonedTime(eventDate, "Asia/Kuala_Lumpur");
+  const [eventDateInClientTZ, setEventDateInClientTZ] = React.useState<Date | null>(null);
 
-  const renderer = ({
-    days,
-    hours,
-    minutes,
-    seconds,
-    completed,
-  }: CountdownRenderProps) => {
+  React.useEffect(() => {
+    const eventDate = new Date("2025-09-20T08:00:00Z");
+    setEventDateInClientTZ(eventDate); // Let it render client-side only
+  }, []);
+
+  const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
     if (completed) {
       return (
         <span className="text-xl font-semibold text-green-600">
@@ -31,6 +27,8 @@ export default function CountdownTimer() {
     }
   };
 
+  if (!eventDateInClientTZ) return null; // Avoid mismatched rendering
+
   return (
     <div className="flex flex-col items-center space-y-6 py-10">
       <h2 className="text-3xl font-extrabold italic text-gray-800">
@@ -40,7 +38,7 @@ export default function CountdownTimer() {
       <div className="text-lg text-gray-700">
         Tarikh Majlis:{" "}
         <span className="font-semibold">
-          {eventDateInTimezone.toLocaleString("ms-MY", {
+          {eventDateInClientTZ.toLocaleString("ms-MY", {
             dateStyle: "full",
             timeStyle: "short",
             timeZone: "Asia/Kuala_Lumpur",
@@ -48,7 +46,7 @@ export default function CountdownTimer() {
         </span>
       </div>
 
-      <Countdown date={eventDateInTimezone} renderer={renderer} />
+      <Countdown date={eventDateInClientTZ} renderer={renderer} />
     </div>
   );
 }
