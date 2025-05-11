@@ -2,10 +2,12 @@
 
 import * as React from "react";
 import Countdown, { CountdownRenderProps } from "react-countdown";
-import { Calendar } from "@/components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar";  // Assuming this is a wrapper around React Date Picker
+import { toZonedTime } from "date-fns-tz";
 
 export default function CountdownTimer() {
-  const eventDate = new Date("2025-09-20T08:00:00");
+  const eventDate = new Date("2025-09-20T08:00:00Z");
+  const eventDateInTimezone = toZonedTime(eventDate, "Asia/Kuala_Lumpur");
 
   const renderer = ({
     days,
@@ -38,7 +40,7 @@ export default function CountdownTimer() {
       <div className="text-lg text-gray-700">
         Tarikh Majlis:{" "}
         <span className="font-semibold">
-          {eventDate.toLocaleString("ms-MY", {
+          {eventDateInTimezone.toLocaleString("ms-MY", {
             dateStyle: "full",
             timeStyle: "short",
             timeZone: "Asia/Kuala_Lumpur",
@@ -46,14 +48,7 @@ export default function CountdownTimer() {
         </span>
       </div>
 
-      <Countdown date={eventDate} renderer={renderer} />
-
-      <Calendar
-        mode="single"
-        selected={eventDate}
-        onSelect={() => {}}
-        className="pointer-events-none bg-white rounded-md border shadow"
-      />
+      <Countdown date={eventDateInTimezone} renderer={renderer} />
     </div>
   );
 }
