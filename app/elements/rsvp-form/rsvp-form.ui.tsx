@@ -140,8 +140,7 @@ export default function RSVPForm() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="font-mono text-center text-sm text-muted-foreground">
-          Terima Kasih Atas Respon Anda!
+        <CardFooter>
         </CardFooter>
       </Card>
     </div>
