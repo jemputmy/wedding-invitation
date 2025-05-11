@@ -51,7 +51,7 @@ export default function RSVPForm() {
   }
 
   return (
-      <Card className="w-full max-w-md text-gray-900">
+      <Card>
         <CardHeader>
           <CardTitle className="text-5xl text-gray-900 text-center italic underline">RSVP</CardTitle>
         </CardHeader>
