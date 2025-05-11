@@ -25,7 +25,6 @@
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-countdown": "^2.3.6",
-    "react-day-picker": "^8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.3",
     "react-howler": "^5.2.0",
