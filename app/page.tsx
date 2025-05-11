@@ -17,7 +17,7 @@ export default function Home() {
       {/* Speech Carousel Section */}
       <div className="relative w-full overflow-hidden">
         <BaseBackground />
-        <div className="absolute inset-0 flex justify-center items-center px-4 w-full h-full bg-white/0">
+        <div className="my-8 absolute inset-0 flex justify-center items-center px-4 w-full h-full bg-white/0">
           <div className="max-w-screen-md w-full">
             <SpeechCarousel />
           </div>
@@ -27,7 +27,7 @@ export default function Home() {
       {/* RSVP Section */}
       <div className="relative w-full overflow-hidden">
         <BaseBackground />
-        <div className="absolute inset-0 flex justify-center items-center px-4 w-full h-full bg-white/0">
+        <div className="my-8 absolute inset-0 flex justify-center items-center px-4 w-full h-full bg-white/0">
           <div className="max-w-screen-md w-full">
             <RSVPForm />
           </div>
