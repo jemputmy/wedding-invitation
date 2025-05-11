@@ -35,7 +35,7 @@ export function SpeechCarousel() {
 
     return (
             <div>
-                <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center">
+                <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-5">
                     Senarai Ucapan
                 </div>
                 <Carousel className="w-full">
