@@ -34,32 +34,33 @@ export function SpeechCarousel() {
     }, [])
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-white to-gray-100 px-4">
-            <div className="w-xl">
-                <div className="my-8 text-3xl md:text-5xl italic underline text-gray-900 text-center">
+        <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-white to-gray-100 px-4 overflow-hidden">
+            <div className="w-full max-w-2xl">
+                <div className="my-8 text-2xl md:text-4xl italic underline text-gray-900 text-center">
                     Senarai Ucapan
                 </div>
-                <Carousel>
+                <Carousel className="w-full">
                     <CarouselContent>
                         {rsvpList.map((item, index) => (
                             <CarouselItem key={index} className="w-full">
                                 <div className="p-1">
-                                    <Card className="text-gray-900">
-                                        <CardContent className="flex flex-col gap-4 p-6 min-h-[150px]">
-                                            <span className="text-xl md:text-4xl font-bold">{item.name}</span>
-                                            <p className="text-base italic">"{item.speech}"</p>
+                                    <Card className="w-full text-gray-900">
+                                        <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[120px] md:min-h-[150px]">
+                                            <span className="text-lg md:text-2xl font-bold break-words">{item.name}</span>
+                                            <p className="text-sm md:text-base italic break-words">"{item.speech}"</p>
                                         </CardContent>
                                     </Card>
                                 </div>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="bg-pink-500 text-white hover:bg-pink-600" />
-                    <CarouselNext className="bg-pink-500 text-white hover:bg-pink-600" />
+                    <div className="flex justify-center gap-2 mt-4">
+                        <CarouselPrevious className="bg-pink-500 text-white hover:bg-pink-600" />
+                        <CarouselNext className="bg-pink-500 text-white hover:bg-pink-600" />
+                    </div>
                 </Carousel>
             </div>
         </div>
-
     )
 }
 
