@@ -1,6 +1,8 @@
 // app/elements/rsvp-form/rsvp-form.server.ts
 'use server'
 
+// app/api/rsvp/route.ts
+import { NextResponse } from 'next/server'
 import { supabase } from '@/app/config/config-supabase'
 
 export async function fetchRsvp() {

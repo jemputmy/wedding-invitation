@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import RSVPForm from "./elements/rsvp-form/rsvp-form.ui"
 import IsPlayMusicDialog from "./elements/play-button/play-button.ui"
+import SpeechCarousel from "./elements/speech-carousel/speech-carousel.ui"
 
 
 
@@ -16,6 +17,7 @@ export default function Home() {
         allowFullScreen
       />
     </div>
+      <div><SpeechCarousel/></div>
  <div><RSVPForm /></div>
      <IsPlayMusicDialog></IsPlayMusicDialog>
     </>
