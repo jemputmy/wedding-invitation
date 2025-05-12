@@ -36,7 +36,7 @@ export default function Home() {
       </div>
 
       {/* RSVP Section */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden mb-3">
         <BaseBackground />
         <div className="my-8 absolute inset-0 flex justify-center items-center px-4 w-full h-full bg-white/0">
           <div className="max-w-screen-md w-full">
