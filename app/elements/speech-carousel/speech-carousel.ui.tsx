@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel"
 import { fetchRsvp } from "./speech-carousel.server"
 import { Quote } from "lucide-react"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar" // Import Avatar from Shadcn
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 
 // Define RsvpData type
 type RsvpData = {
@@ -19,7 +19,7 @@ type RsvpData = {
     speech: string
     isAttend: boolean
     total_person: number
-    avatarUrl: string // Assuming the avatar URL is provided in the data
+    avatarUrl: string
 }
 
 export function SpeechCarousel() {
@@ -57,18 +57,20 @@ export function SpeechCarousel() {
                                                     alt={item.name} 
                                                 />
                                                 <AvatarFallback>
-                                                    {item.name.slice(0, 2).toUpperCase()} {/* First two letters */}
+                                                    {item.name.slice(0, 2).toUpperCase()}
                                                 </AvatarFallback>
                                             </Avatar>
-                                            <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">{item.name}</span>
+                                            <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
+                                                {item.name}
+                                            </span>
                                         </div>
                                         {/* Quote and Speech */}
-                                        <div className="flex items-start gap-2">
-                                            <Quote className="w-5 h-5 text-gray-400 mt-1" />
-                                            <p className="text-sm md:text-base italic text-gray-700 flex-1 break-words overflow-hidden">
-                                                "{item.speech}"
-                                            </p>
-                                        </div>
+<div className="flex items-start gap-2">
+    <Quote className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
+    <p className="text-sm md:text-base italic text-gray-700 break-words whitespace-pre-line max-w-[calc(100%-1.75rem)]">
+        "{item.speech}"
+    </p>
+</div>
                                     </CardContent>
                                 </Card>
                             </div>
