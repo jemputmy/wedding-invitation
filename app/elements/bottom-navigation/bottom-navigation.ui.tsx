@@ -37,7 +37,7 @@ export default function BottomDock() {
           className="flex flex-col items-center text-gray-500 hover:text-black active:text-black cursor-pointer transition-colors"
         >
           <CalendarIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Calendar</span>
+          <span className="text-xs mt-1">Kalendar</span>
         </button>
 
         <button
@@ -45,7 +45,7 @@ export default function BottomDock() {
           className="flex flex-col items-center text-gray-500 hover:text-black active:text-black cursor-pointer transition-colors"
         >
           <GiftIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Gift</span>
+          <span className="text-xs mt-1">Money Gift</span>
         </button>
 
         <button
@@ -53,7 +53,7 @@ export default function BottomDock() {
           className="flex flex-col items-center text-gray-500 hover:text-black active:text-black cursor-pointer transition-colors"
         >
           <MapPinIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Location</span>
+          <span className="text-xs mt-1">Lokasi</span>
         </button>
 
         <button
@@ -61,7 +61,7 @@ export default function BottomDock() {
           className="flex flex-col items-center text-gray-500 hover:text-black active:text-black cursor-pointer transition-colors"
         >
           <PhoneIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Contact</span>
+          <span className="text-xs mt-1">Hubungi</span>
         </button>
 
         <button
