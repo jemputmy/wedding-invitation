@@ -22,9 +22,20 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { CheckCircle2 } from "lucide-react";
 
 export default function RSVPForm() {
   const [loading, setLoading] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
   const [formValues, setFormValues] = useState({
     name: "",
     speech: "",
@@ -38,7 +49,13 @@ export default function RSVPForm() {
     try {
       setLoading(true);
       await createRsvp(formData);
-      alert("RSVP saved successfully.");
+      setFormValues({
+        name: "",
+        speech: "",
+        isAttend: false,
+        total_person: "",
+      });
+      setShowDialog(true); // Show thank you modal
     } catch (err) {
       console.error(err);
       alert("RSVP failed");
@@ -56,7 +73,6 @@ export default function RSVPForm() {
         <CardHeader />
         <CardContent>
           <form onSubmit={handleForm} className="space-y-1">
-            {/* Name Input */}
             <div>
               <Label
                 htmlFor="name"
@@ -76,7 +92,6 @@ export default function RSVPForm() {
               />
             </div>
 
-            {/* Speech Input */}
             <div>
               <Label
                 htmlFor="speech"
@@ -91,13 +106,13 @@ export default function RSVPForm() {
                 rows={4}
                 className="min-h-[120px]"
                 value={formValues.speech}
+                required
                 onChange={(e) =>
                   setFormValues((prev) => ({ ...prev, speech: e.target.value }))
                 }
               />
             </div>
 
-            {/* Attend Checkbox */}
             <div className="flex items-center space-x-2 my-6">
               <Checkbox
                 id="isAttend"
@@ -107,7 +122,7 @@ export default function RSVPForm() {
                   setFormValues((prev) => ({
                     ...prev,
                     isAttend: checked,
-                    total_person: checked ? prev.total_person : "", // Reset total_person if not attending
+                    total_person: checked ? prev.total_person : "",
                   }));
                 }}
               />
@@ -119,7 +134,6 @@ export default function RSVPForm() {
               </Label>
             </div>
 
-            {/* Total Person Select (only shown if isAttend is true) */}
             {formValues.isAttend && (
               <div>
                 <Label
@@ -150,10 +164,11 @@ export default function RSVPForm() {
               </div>
             )}
 
-            {/* Submit Button */}
             <Button
               type="submit"
-              disabled={loading || (formValues.isAttend && !formValues.total_person)}
+              disabled={
+                loading || (formValues.isAttend && !formValues.total_person)
+              }
               className="w-full bg-pink-500 text-white hover:bg-pink-600 my-2"
             >
               {loading ? "Sedang Menghantar..." : "Hantar RSVP"}
@@ -162,6 +177,24 @@ export default function RSVPForm() {
         </CardContent>
         <CardFooter />
       </Card>
+
+      {/* 🎉 Thank You Dialog */}
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="text-center">
+          <DialogHeader className="flex flex-col items-center gap-2">
+            <CheckCircle2 className="w-12 h-12 text-green-600 bg-green-100 rounded-full p-1" />
+            <DialogTitle className="text-xl">Terima kasih</DialogTitle>
+            <DialogDescription className="text-base text-gray-700">
+              Terima kasih atas respon anda
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="justify-center">
+            <DialogClose asChild>
+              <Button className="bg-pink-500 text-white">Tutup</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
