@@ -51,38 +51,43 @@ export function SpeechCarousel() {
               <div className="p-1">
                 <Card className="w-full bg-white shadow-md">
                   <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[150px]">
-                    {/* Avatar and Name */}
+                    {/* Hadir Text */}
+                    <div className="flex items-center text-sm text-green-600 ms-10">
+                          {item.isAttend && (
+                            <>
+                              <CheckCircle2 className="w-4 h-4" />&nbsp;
+                              <span>
+                                Hadir{" "}
+                                {item.total_person === 1
+                                  ? "seorang"
+                                  : `${item.total_person} orang`}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                    {/* Avatar and Info Section */}
                     <div className="flex items-center gap-3">
+                      {/* Avatar */}
                       <Avatar className="bg-white">
                         <AvatarImage
-                          src={
-                            item.avatarUrl || "https://via.placeholder.com/150"
-                          }
+                          src={item.avatarUrl || "https://via.placeholder.com/150"}
                           alt={item.name}
                         />
                         <AvatarFallback>
                           {item.name.slice(0, 2).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
-                        {item.name}
-                      </span>
-                      <span className="flex items-center gap-1 text-green-600 text-sm">
-                        {item.isAttend && (
-                          <>
-                            <CheckCircle2
-                              className="w-4 h-4"
-                            />
-                            <span>
-                              Hadir{" "}
-                              {item.total_person === 1
-                                ? "seorang"
-                                : `${item.total_person} orang`}
-                            </span>
-                          </>
-                        )}
-                      </span>
+
+                      {/* Info Section */}
+                      <div className="flex flex-col justify-center">
+
+                        {/* Name */}
+                        <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
+                          {item.name}
+                        </span>
+                      </div>
                     </div>
+
                     {/* Quote and Speech */}
                     <div className="flex items-start gap-2">
                       <Quote className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
