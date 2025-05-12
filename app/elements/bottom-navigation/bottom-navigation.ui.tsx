@@ -26,7 +26,7 @@ export default function BottomDock() {
   };
 
   const handleRSVP = () => {
-    console.log("RSVP clicked");
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   };
 
   return (
