@@ -1,6 +1,7 @@
 // app/page.tsx
 "use client";
 import BaseBackground from "./elements/base-background/base-background.ui";
+import BottomDock from "./elements/bottom-navigation/bottom-navigation.ui";
 import { CanvaDesign } from "./elements/canva-design/canva-dessign.ui";
 import CountdownTimer from "./elements/count-down/count-down.ui";
 import IsPlayMusicDialog from "./elements/play-button/play-button.ui";
@@ -44,7 +45,8 @@ export default function Home() {
         </div>
       </div>
 
-      <IsPlayMusicDialog />
+     <IsPlayMusicDialog />
+     <BottomDock/>
     </>
   );
 }
