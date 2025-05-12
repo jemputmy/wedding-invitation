@@ -9,6 +9,7 @@ export async function createRsvp(formData: FormData) {
   const isAttend = formData.get('isAttend') === 'on'
   const totalPerson = parseInt(formData.get('total_person')?.toString() || '0', 10)
 
+  
   const { data, error } = await supabase
     .from('Rsvp')
     .insert([{ name, speech, isAttend, total_person: totalPerson }])

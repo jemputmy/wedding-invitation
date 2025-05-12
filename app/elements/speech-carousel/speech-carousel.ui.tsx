@@ -13,6 +13,7 @@ import { fetchRsvp } from "./speech-carousel.server";
 import { Quote } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area"; // Make sure this is imported
+import { CheckCircle2 } from "lucide-react"; // Add this at the top with other imports
 
 // Define RsvpData type
 type RsvpData = {
@@ -51,7 +52,7 @@ export function SpeechCarousel() {
                 <Card className="w-full bg-white shadow-md">
                   <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[150px]">
                     {/* Avatar and Name */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       <Avatar className="bg-white">
                         <AvatarImage
                           src={
@@ -65,6 +66,21 @@ export function SpeechCarousel() {
                       </Avatar>
                       <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
                         {item.name}
+                      </span>
+                      <span className="flex items-center gap-1 text-green-600 text-sm">
+                        {item.isAttend && (
+                          <>
+                            <CheckCircle2
+                              className="w-4 h-4"
+                            />
+                            <span>
+                              Hadir{" "}
+                              {item.total_person === 1
+                                ? "seorang"
+                                : `${item.total_person} orang`}
+                            </span>
+                          </>
+                        )}
                       </span>
                     </div>
                     {/* Quote and Speech */}
