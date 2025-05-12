@@ -43,7 +43,9 @@ export default function Home() {
             <RSVPForm />
           </div>
         </div>
-      </div>
+     </div>
+     
+     <div className="mb-5"></div>
 
      <div className="sticky bottom-0 left-0 right-0 bg-white border-t shadow-sm z-50"><BottomDock/></div>
      <IsPlayMusicDialog />
