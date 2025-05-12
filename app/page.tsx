@@ -45,8 +45,8 @@ export default function Home() {
         </div>
       </div>
 
+     <div className="my-3"><BottomDock/></div>
      <IsPlayMusicDialog />
-     <BottomDock/>
     </>
   );
 }
