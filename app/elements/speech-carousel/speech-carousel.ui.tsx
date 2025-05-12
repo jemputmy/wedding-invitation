@@ -63,10 +63,12 @@ export function SpeechCarousel() {
                                             <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">{item.name}</span>
                                         </div>
                                         {/* Quote and Speech */}
-                                        <p className="text-sm md:text-base italic text-gray-700 flex items-start gap-2">
+                                        <div className="flex items-start gap-2">
                                             <Quote className="w-5 h-5 text-gray-400 mt-1" />
-                                            "{item.speech}"
-                                        </p>
+                                            <p className="text-sm md:text-base italic text-gray-700 flex-1 break-words overflow-hidden">
+                                                "{item.speech}"
+                                            </p>
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </div>
