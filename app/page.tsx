@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </div>
 
-     <div className="my-3"><BottomDock/></div>
+     <div className="sticky bottom-0 left-0 right-0 bg-white border-t shadow-sm z-50"><BottomDock/></div>
      <IsPlayMusicDialog />
     </>
   );

@@ -49,13 +49,13 @@ export default function RSVPForm() {
 
   return (
     <div>
-      <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-5">
+      <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-2">
         RSVP
       </div>
       <Card>
         <CardHeader />
         <CardContent>
-          <form onSubmit={handleForm} className="space-y-4">
+          <form onSubmit={handleForm} className="space-y-1">
             {/* Name Input */}
             <div>
               <Label
@@ -154,7 +154,7 @@ export default function RSVPForm() {
             <Button
               type="submit"
               disabled={loading || (formValues.isAttend && !formValues.total_person)}
-              className="w-full bg-pink-500 text-white hover:bg-pink-600 my-5"
+              className="w-full bg-pink-500 text-white hover:bg-pink-600 my-2"
             >
               {loading ? "Sedang Menghantar..." : "Hantar RSVP"}
             </Button>
