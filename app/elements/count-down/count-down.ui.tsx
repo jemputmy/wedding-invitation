@@ -23,7 +23,7 @@ export default function CountdownTimer() {
     if (completed) {
       return (
         <div className="text-center space-y-2">
-          <Badge variant="success" className="text-lg py-2 px-4 rounded-full bg-green-100 text-green-800">
+          <Badge className="text-lg py-2 px-4 rounded-full bg-green-100 text-green-800">
             Hari yang dinanti telah tiba! 🎉
           </Badge>
         </div>
