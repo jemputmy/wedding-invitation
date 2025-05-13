@@ -3,26 +3,6 @@
 import { useState } from "react";
 import { createRsvp } from "./rsvp-form.server";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -31,9 +11,34 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+} from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { CheckCircle2 } from "lucide-react";
 
-export default function RSVPForm() {
+export function RSVPDrawer({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
   const [loading, setLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -55,35 +60,36 @@ export default function RSVPForm() {
         isAttend: false,
         total_person: "",
       });
-      setShowDialog(true); // Show thank you modal
+      setShowDialog(true);
+      onOpenChange(false);
     } catch (err) {
       console.error(err);
-      alert("RSVP failed");
+      alert("RSVP gagal dihantar.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-2">
-        RSVP
-      </div>
-      <Card>
-        <CardHeader />
-        <CardContent>
-          <form onSubmit={handleForm} className="space-y-1">
-            <div>
-              <Label
-                htmlFor="name"
-                className="text-base font-mono text-gray-900 mb-2"
-              >
-                Nama Anda
-              </Label>
+    <>
+      <Drawer open={open} onOpenChange={onOpenChange}>
+        <DrawerContent className="p-4">
+          <DrawerHeader>
+            <DrawerTitle className="text-center text-lg">
+              Isi Maklumat Kehadiran
+            </DrawerTitle>
+            <DrawerDescription className="text-center text-sm text-gray-600">
+              Kami hargai kehadiran dan ucapan anda 🙏
+            </DrawerDescription>
+          </DrawerHeader>
+
+          <form onSubmit={handleForm} className="space-y-4 p-2">
+            <div className="space-y-1.5">
+              <Label htmlFor="name">Nama Anda</Label>
               <Input
                 id="name"
                 name="name"
-                placeholder="e.g. Amirul Irfan"
+                placeholder="Contoh: Amirul Irfan"
                 required
                 value={formValues.name}
                 onChange={(e) =>
@@ -92,19 +98,13 @@ export default function RSVPForm() {
               />
             </div>
 
-            <div>
-              <Label
-                htmlFor="speech"
-                className="text-base font-mono text-gray-900 mb-2"
-              >
-                Ucapan
-              </Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="speech">Ucapan</Label>
               <Textarea
                 id="speech"
                 name="speech"
-                placeholder="Ucapan..."
-                rows={4}
-                className="min-h-[120px]"
+                placeholder="Ucapan anda..."
+                rows={3}
                 value={formValues.speech}
                 required
                 onChange={(e) =>
@@ -113,7 +113,7 @@ export default function RSVPForm() {
               />
             </div>
 
-            <div className="flex items-center space-x-2 my-6">
+            <div className="flex items-center space-x-2">
               <Checkbox
                 id="isAttend"
                 name="isAttend"
@@ -126,22 +126,12 @@ export default function RSVPForm() {
                   }));
                 }}
               />
-              <Label
-                htmlFor="isAttend"
-                className="text-base font-mono text-gray-900"
-              >
-                Saya Hadir
-              </Label>
+              <Label htmlFor="isAttend">Saya Hadir</Label>
             </div>
 
             {formValues.isAttend && (
-              <div>
-                <Label
-                  htmlFor="total_person"
-                  className="text-base font-mono text-gray-900 mb-2"
-                >
-                  Bilangan rombongan (termasuk anda)
-                </Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="total_person">Bilangan Rombongan</Label>
                 <Select
                   name="total_person"
                   value={formValues.total_person}
@@ -151,10 +141,10 @@ export default function RSVPForm() {
                   required
                 >
                   <SelectTrigger id="total_person">
-                    <SelectValue placeholder="Sila pilih bilangan rombongan" />
+                    <SelectValue placeholder="Pilih bilangan rombongan" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-black">
-                    {Array.from({ length: 3 }, (_, i) => (
+                  <SelectContent>
+                    {Array.from({ length: 5 }, (_, i) => (
                       <SelectItem key={i + 1} value={(i + 1).toString()}>
                         {i + 1}
                       </SelectItem>
@@ -164,29 +154,37 @@ export default function RSVPForm() {
               </div>
             )}
 
-            <Button
-              type="submit"
-              disabled={
-                loading || (formValues.isAttend && !formValues.total_person)
-              }
-              className="w-full bg-pink-500 text-white hover:bg-pink-600 my-2"
-            >
-              {loading ? "Sedang Menghantar..." : "Hantar RSVP"}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter />
-      </Card>
+            <div className="space-y-2 pt-2">
+              <Button
+                type="submit"
+                disabled={
+                  loading || (formValues.isAttend && !formValues.total_person)
+                }
+                className="w-full bg-pink-500 text-white hover:bg-pink-600"
+              >
+                {loading ? "Menghantar..." : "Hantar RSVP"}
+              </Button>
 
-      {/* 🎉 Thank You Dialog */}
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => onOpenChange(false)}
+              >
+                Batal
+              </Button>
+            </div>
+          </form>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Thank You Modal */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="text-center">
           <DialogHeader className="flex flex-col items-center gap-2">
             <CheckCircle2 className="w-12 h-12 text-green-600 bg-green-100 rounded-full p-1" />
-            <DialogTitle className="text-xl">Terima kasih</DialogTitle>
-            <DialogDescription className="text-base text-gray-700">
-              Terima kasih atas respon anda
-            </DialogDescription>
+            <DialogTitle className="text-xl">Terima kasih!</DialogTitle>
+            <DialogDescription>Respon anda telah diterima</DialogDescription>
           </DialogHeader>
           <DialogFooter className="justify-center">
             <DialogClose asChild>
@@ -195,6 +193,6 @@ export default function RSVPForm() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }

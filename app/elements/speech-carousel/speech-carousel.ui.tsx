@@ -10,10 +10,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { fetchRsvp } from "./speech-carousel.server";
-import { Quote } from "lucide-react";
+import { Quote, CheckCircle2 } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area"; // Make sure this is imported
-import { CheckCircle2 } from "lucide-react"; // Add this at the top with other imports
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { motion } from "framer-motion";
 
 // Define RsvpData type
 type RsvpData = {
@@ -44,6 +44,23 @@ export function SpeechCarousel() {
       <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-5">
         Senarai Ucapan
       </div>
+
+      {/* Slide Hint */}
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 10 }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className="text-center text-sm text-gray-500 italic mb-2 flex items-center justify-center gap-1"
+      >
+        <span>←</span>
+        <span>Sila slide</span>
+        <span>→</span>
+      </motion.div>
+
       <Carousel className="w-full">
         <CarouselContent>
           {rsvpList.map((item, index) => (
@@ -53,21 +70,21 @@ export function SpeechCarousel() {
                   <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[150px]">
                     {/* Hadir Text */}
                     <div className="flex items-center text-sm text-green-600 ms-10">
-                          {item.isAttend && (
-                            <>
-                              <CheckCircle2 className="w-4 h-4" />&nbsp;
-                              <span>
-                                Hadir{" "}
-                                {item.total_person === 1
-                                  ? "seorang"
-                                  : `${item.total_person} orang`}
-                              </span>
-                            </>
-                          )}
-                        </div>
+                      {item.isAttend && (
+                        <>
+                          <CheckCircle2 className="w-4 h-4" />&nbsp;
+                          <span>
+                            Hadir{" "}
+                            {item.total_person === 1
+                              ? "seorang"
+                              : `${item.total_person} orang`}
+                          </span>
+                        </>
+                      )}
+                    </div>
+
                     {/* Avatar and Info Section */}
                     <div className="flex items-center gap-3">
-                      {/* Avatar */}
                       <Avatar className="bg-white">
                         <AvatarImage
                           src={item.avatarUrl || "https://via.placeholder.com/150"}
@@ -77,11 +94,7 @@ export function SpeechCarousel() {
                           {item.name.slice(0, 2).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
-
-                      {/* Info Section */}
                       <div className="flex flex-col justify-center">
-
-                        {/* Name */}
                         <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
                           {item.name}
                         </span>
@@ -103,9 +116,10 @@ export function SpeechCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
+
         <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="bg-pink-500 text-white hover:bg-pink-600" />
-          <CarouselNext className="bg-pink-500 text-white hover:bg-pink-600" />
+          <CarouselPrevious className="bg-pink-500/80 text-white hover:bg-pink-600 transition-colors" />
+          <CarouselNext className="bg-pink-500/80 text-white hover:bg-pink-600 transition-colors" />
         </div>
       </Carousel>
     </div>
