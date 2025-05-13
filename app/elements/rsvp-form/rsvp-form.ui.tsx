@@ -73,7 +73,7 @@ export function RSVPDrawer({
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="p-4">
+        <DrawerContent className="p-4 overflow-auto h-[calc(100vh-10rem)]"> {/* Ensure scrollable content */}
           <DrawerHeader>
             <DrawerTitle className="text-center text-lg">
               Isi Maklumat Kehadiran
