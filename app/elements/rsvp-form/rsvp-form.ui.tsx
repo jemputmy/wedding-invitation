@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { createRsvp } from "./rsvp-form.server";
 import {
   Dialog,
@@ -70,10 +68,17 @@ export function RSVPDrawer({
     }
   };
 
+  const handleClose = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the drawer from closing when clicking outside
+  }, []);
+
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="p-4 overflow-auto h-[calc(100vh-10rem)]"> {/* Ensure scrollable content */}
+        <DrawerContent
+          className="p-4"
+          onPointerDown={handleClose} // Prevent closing on click outside
+        >
           <DrawerHeader>
             <DrawerTitle className="text-center text-lg">
               Isi Maklumat Kehadiran
