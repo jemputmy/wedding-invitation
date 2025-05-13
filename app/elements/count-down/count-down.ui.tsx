@@ -12,14 +12,21 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 export default function CountdownTimer() {
-  const [eventDateInClientTZ, setEventDateInClientTZ] = React.useState<Date | null>(null);
+  const [eventDateInClientTZ, setEventDateInClientTZ] =
+    React.useState<Date | null>(null);
 
   React.useEffect(() => {
     const eventDate = new Date("2025-09-20T08:00:00Z");
     setEventDateInClientTZ(eventDate);
   }, []);
 
-  const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
+  const renderer = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: CountdownRenderProps) => {
     if (completed) {
       return (
         <div className="text-center space-y-2">
@@ -30,7 +37,7 @@ export default function CountdownTimer() {
       );
     } else {
       return (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-1 text-center">
           <TimeBox value={days} label="Hari" />
           <TimeBox value={hours} label="Jam" />
           <TimeBox value={minutes} label="Minit" />
@@ -70,16 +77,14 @@ export default function CountdownTimer() {
         </CardContent>
 
         {/* Adding the Quranic prayer */}
-        <CardContent className="space-y-2 text-center text-gray-600 text-xs mt-3">
-  <p className="italic">
-  Ya Allah Ya Rahman Ya Rahim,
-berkatilah majlis perkahwinan ini.
-Limpahkanlah baraqah dan rahmatMu kepada kedua-dua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. Kekalkanlah jodoh mereka hingga ke jannah.
-Aamiin.
-  </p>
-  <p className="font-bold text-sm">Aamin, Ya Rabbal A'lamin</p>
-</CardContent>
-
+        <CardContent className="space-y-2 text-center text-gray-600 text-xs mt-1">
+          <p className="italic">
+            Ya Allah Ya Rahman Ya Rahim, berkatilah majlis perkahwinan ini.
+            Limpahkanlah baraqah dan rahmatMu kepada kedua-dua mempelai ini.
+            Kurniakanlah mereka kelak zuriat yang soleh dan solehah. Kekalkanlah
+            jodoh mereka hingga ke jannah. Aamiin.
+          </p>
+        </CardContent>
       </Card>
     </div>
   );
@@ -89,7 +94,9 @@ function TimeBox({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center bg-white border border-gray-300 rounded-lg shadow-sm p-3">
       <div className="text-2xl font-mono font-bold text-black">{value}</div>
-      <div className="text-xs uppercase tracking-wide text-gray-500">{label}</div>
+      <div className="text-xs uppercase tracking-wide text-gray-500">
+        {label}
+      </div>
     </div>
   );
 }
