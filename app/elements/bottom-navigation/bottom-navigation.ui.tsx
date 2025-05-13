@@ -12,7 +12,7 @@ import { CalendarDrawer } from "./calendar/calendar.ui";
 import { LocationDrawer } from "./location/location.ui";
 import { ContactDrawer } from "./contact/contact.ui";
 import { MoneyGiftDrawer } from "./money-gift/money-gift.ui";
-import { RSVPDrawer } from "../rsvp-form/rsvp-form.ui";
+import { RSVPModal } from "../rsvp-form/rsvp-form.ui";
 
 export default function BottomDock() {
   const [isCalendarDrawerOpen, setIsCalendarDrawerOpen] = useState(false);
@@ -27,8 +27,8 @@ export default function BottomDock() {
   const [isContactDrawerOpen, setIsContactDrawerOpen] = useState(false);
   const openContactDrawer = () => setIsContactDrawerOpen(true);
 
-  const [isRSVPDrawerOpen, setIsRSVPDrawerOpen] = useState(false);
-  const openRSVPDrawer = () => setIsRSVPDrawerOpen(true);
+  const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false);
+  const openRSVPModal = () => setIsRSVPModalOpen(true);
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm z-50">
@@ -62,7 +62,7 @@ export default function BottomDock() {
           <span className="text-xs mt-1">Hubungi</span>
         </button>
         <button
-          onClick={openRSVPDrawer}
+          onClick={openRSVPModal}
           className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
         >
           <PencilSquareIcon className="w-6 h-6" />
@@ -87,7 +87,7 @@ export default function BottomDock() {
         open={isContactDrawerOpen}
         onOpenChange={setIsContactDrawerOpen}
       />
-      <RSVPDrawer open={isRSVPDrawerOpen} onOpenChange={setIsRSVPDrawerOpen} />
+      <RSVPModal open={isRSVPModalOpen} onOpenChange={setIsRSVPModalOpen} />
     </div>
   );
 }
