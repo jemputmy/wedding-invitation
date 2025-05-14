@@ -1,11 +1,15 @@
+import Image from "next/image";
+
 export function BaseBackground() {
   return (
-    <div className="relative w-full pt-[140.9524%] shadow-md rounded-lg overflow-hidden mb-2">
-      <iframe
-        loading="lazy"
-        className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none"
-        src="https://www.canva.com/design/DAGnIEn52ZM/uU18XQWx86Cp76ckSHkxyw/view?embed"
-        allowFullScreen
+    <div className="relative w-full max-w-md mx-auto aspect-[5/7] shadow-md rounded-lg overflow-hidden mb-2">
+      <Image
+        src="https://drive.google.com/uc?export=view&id=12aNpSc9r0CUrx29taCAO6cEQOujoSoCx"
+        alt="Canva Design"
+        fill
+        className="object-contain"
+        priority
+        sizes="(max-width: 768px) 100vw, 400px"
       />
     </div>
   );
