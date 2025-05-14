@@ -193,3 +193,71 @@ export const locationConfig: LocationConfig = {
     closeButtonText: "Close",
   },
 };
+
+//  #5
+// Contact Drawer
+export interface ContactPerson {
+  name: string;
+  phone: string;
+  designation: string;
+  avatarOptions?: {
+    background?: string;
+    color?: string;
+    size?: number;
+  };
+}
+
+export interface ContactConfig {
+  contacts: ContactPerson[];
+  translations: {
+    title: string;
+    description: string;
+    whatsappButtonText: string;
+    callButtonText: string;
+    closeButtonText: string;
+  };
+  styles: {
+    card: string;
+    whatsappButton: string;
+    callButton: string;
+  };
+}
+
+export const contactConfig: ContactConfig = {
+  contacts: [
+    {
+      name: "Amirul Irfan",
+      phone: "+60196643494",
+      designation: "Bapa Pengantin Lelaki",
+      avatarOptions: {
+        background: "random", // or specific color
+        color: "#ffffff",
+        size: 128,
+      },
+    },
+    {
+      name: "Syazwan Salleh",
+      phone: "+60123456789",
+      designation: "Bapa Pengantin Perempuan",
+    },
+    {
+      name: "Nadia Aiman",
+      phone: "+60198765432",
+      designation: "Pengantin Lelaki",
+    },
+  ],
+  translations: {
+    title: "Hubungi Kami",
+    description: "Terus hubungi sesiapa yang berkaitan.",
+    whatsappButtonText: "WhatsApp",
+    callButtonText: "Call",
+    closeButtonText: "Tutup",
+  },
+  styles: {
+    card: "text-center border p-4 rounded-md shadow-sm bg-white",
+    whatsappButton:
+      "flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition",
+    callButton:
+      "flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition",
+  },
+};

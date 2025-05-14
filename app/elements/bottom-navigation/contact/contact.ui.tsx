@@ -12,46 +12,39 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PhoneIcon } from "@heroicons/react/24/outline";
 import { FaWhatsapp } from "react-icons/fa";
+import { contactConfig } from "../../../config/config-app-environment";
 
 export interface CalendarDrawerInterface {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-interface ContactPerson {
-  name: string;
-  phone: string;
-  designation: string;
-}
-
-const contacts: ContactPerson[] = [
-  { name: "Amirul Irfan", phone: "+60196643494", designation: "Bapa Pengantin Lelaki" },
-  { name: "Syazwan Salleh", phone: "+60123456789", designation: "Bapa Pengantin Perempuan" },
-  { name: "Nadia Aiman", phone: "+60198765432", designation: "Pengantin Lelaki" },
-];
-
 export function ContactDrawer({ open, onOpenChange }: CalendarDrawerInterface) {
+  const { contacts, translations, styles } = contactConfig;
+
+  const getAvatarUrl = (contact: ContactPerson) => {
+    const options = contact.avatarOptions || {};
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(contact.name)}` +
+      `&background=${options.background || 'random'}` +
+      `&color=${options.color || 'fff'}` +
+      `&size=${options.size || 128}`;
+  };
+
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger></DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-center">
-          <DrawerTitle>Hubungi Kami</DrawerTitle>
-          <DrawerDescription>Terus hubungi sesiapa yang berkaitan.</DrawerDescription>
+          <DrawerTitle>{translations.title}</DrawerTitle>
+          <DrawerDescription>{translations.description}</DrawerDescription>
         </DrawerHeader>
 
-        {/* Scrollable area */}
         <ScrollArea className="h-[300px] px-4 pb-6">
           <div className="space-y-6">
             {contacts.map((contact, index) => (
-              <div
-                key={index}
-                className="text-center border p-4 rounded-md shadow-sm bg-white"
-              >
+              <div key={index} className={styles.card}>
                 <img
-                  src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
-                    contact.name
-                  )}`}
+                  src={getAvatarUrl(contact)}
                   alt={contact.name}
                   className="w-16 h-16 rounded-full mx-auto mb-2"
                 />
@@ -64,17 +57,17 @@ export function ContactDrawer({ open, onOpenChange }: CalendarDrawerInterface) {
                     href={`https://wa.me/${contact.phone.replace("+", "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
+                    className={styles.whatsappButton}
                   >
                     <FaWhatsapp className="w-5 h-5" />
-                    WhatsApp
+                    {translations.whatsappButtonText}
                   </a>
                   <a
                     href={`tel:${contact.phone}`}
-                    className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                    className={styles.callButton}
                   >
                     <PhoneIcon className="w-5 h-5" />
-                    Call
+                    {translations.callButtonText}
                   </a>
                 </div>
               </div>
@@ -85,7 +78,7 @@ export function ContactDrawer({ open, onOpenChange }: CalendarDrawerInterface) {
         <DrawerFooter>
           <DrawerClose asChild>
             <Button variant="outline" onClick={() => onOpenChange(false)}>
-              Tutup
+              {translations.closeButtonText}
             </Button>
           </DrawerClose>
         </DrawerFooter>
