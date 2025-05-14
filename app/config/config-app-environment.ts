@@ -87,7 +87,7 @@ export const weddingCalendarConfig: CalendarDrawerConfig = {
     title: "Tambah ke Kalendar",
     description:
       "Gunakan pilihan di bawah untuk simpan tarikh ke kalendar anda.",
-    closeButtonText: "Close",
+    closeButtonText: "Tutup",
     providers: {
       google: {
         label: "Add to Google Calendar",
@@ -159,7 +159,7 @@ export const moneyGiftConfig: MoneyGiftConfig = {
     description:
       "Imbas kod QR atau salin nombor akaun untuk sumbangan ikhlas anda.",
     copySuccessMessage: "Account number copied!",
-    closeButtonText: "Close",
+    closeButtonText: "Tutup",
   },
 };
 
@@ -190,7 +190,7 @@ export const locationConfig: LocationConfig = {
     description: "Gunakan aplikasi di bawah untuk navigasi ke lokasi kami.",
     googleMapsButtonText: "Open in Google Maps",
     wazeButtonText: "Navigate with Waze",
-    closeButtonText: "Close",
+    closeButtonText: "Tutup",
   },
 };
 
@@ -260,4 +260,39 @@ export const contactConfig: ContactConfig = {
     callButton:
       "flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition",
   },
+};
+
+//  ASSET
+// #6
+
+// Canva
+// canva.config.ts
+
+export interface CanvaImage {
+  id: string;
+  url: string;
+  alt: string;
+}
+
+export const CANVA_IMAGES: CanvaImage[] = [
+  {
+    id: "1",
+    url: "https://drive.google.com/uc?export=view&id=1pkOAINbVCBKPancaygGGrWHfcIIZh2jX",
+    alt: "Canva Design 1",
+  },
+];
+
+// Base background
+// base-background.config.ts
+
+export interface BaseBackgroundImage {
+  id: string;
+  url: string;
+  alt: string;
+}
+
+export const BASE_BACKGROUND_IMAGE: BaseBackgroundImage = {
+  id: "bg-1",
+  url: "https://drive.google.com/uc?export=view&id=12aNpSc9r0CUrx29taCAO6cEQOujoSoCx",
+  alt: "Canva Design Background",
 };

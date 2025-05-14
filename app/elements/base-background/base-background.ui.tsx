@@ -1,11 +1,13 @@
+// BaseBackground.tsx
 import Image from "next/image";
+import { BASE_BACKGROUND_IMAGE } from "../../config/config-app-environment";
 
 export function BaseBackground() {
   return (
     <div className="relative w-full max-w-md mx-auto aspect-[5/7] shadow-md rounded-lg overflow-hidden mb-2">
       <Image
-        src="https://drive.google.com/uc?export=view&id=12aNpSc9r0CUrx29taCAO6cEQOujoSoCx"
-        alt="Canva Design"
+        src={BASE_BACKGROUND_IMAGE.url}
+        alt={BASE_BACKGROUND_IMAGE.alt}
         fill
         className="object-contain"
         priority
@@ -15,4 +17,4 @@ export function BaseBackground() {
   );
 }
 
-export default BaseBackground
+export default BaseBackground;
