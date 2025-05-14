@@ -9,62 +9,97 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { FaGoogle } from "react-icons/fa";
-import { FaApple } from "react-icons/fa";
+import { CalendarDrawerConfig, weddingCalendarConfig } from "../../../config/config-app-environment";
+import { CalendarEvent } from "@/app/config/config-app-environment";
 
 export interface CalendarDrawerInterface {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  config?: CalendarDrawerConfig;
 }
 
 export function CalendarDrawer({
   open,
   onOpenChange,
+  config = weddingCalendarConfig,
 }: CalendarDrawerInterface) {
-  // Replace with your real event details
-  const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Majlis+Perkahwinan&details=Sertai+kami+untuk+meraikan+hari+istimewa!&location=Dewan+Seri+Endon,+Putrajaya&dates=20250601T100000Z/20250601T140000Z";
-  const appleCalendarUrl = "/calendar.ics"; // Serve an actual .ics file from your public folder
+  const generateGoogleCalendarUrl = () => {
+    const params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: config.event.title,
+      details: config.event.description,
+      location: config.event.location,
+      dates: `${formatDateForGoogle(config.event.startDate)}/${formatDateForGoogle(config.event.endDate)}`,
+      ctz: config.event.timeZone,
+    });
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  };
+
+  const formatDateForGoogle = (dateString: string) => {
+    return new Date(dateString).toISOString().replace(/-|:|\.\d\d\d/g, "");
+  };
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger></DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-center">
-          <DrawerTitle>Tambah ke Kalendar</DrawerTitle>
-          <DrawerDescription>
-            Gunakan pilihan di bawah untuk simpan tarikh ke kalendar anda.
-          </DrawerDescription>
+          <DrawerTitle>{config.ui.title}</DrawerTitle>
+          <DrawerDescription>{config.ui.description}</DrawerDescription>
         </DrawerHeader>
 
         <div className="px-4 py-6 space-y-4 text-center">
           <a
-            href={googleCalendarUrl}
+            href={generateGoogleCalendarUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
           >
-            <FaGoogle className="w-5 h-5" />
-            Add to Google Calendar
+            <config.ui.providers.google.icon className="w-5 h-5" />
+            {config.ui.providers.google.label}
           </a>
 
           <a
-            href={appleCalendarUrl}
-            download
+            href={generateAppleCalendarUrl(config.event)}
+            download="event.ics"
             className="flex items-center justify-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 transition"
           >
-            <FaApple className="w-5 h-5" />
-            Add to Apple Calendar
+            <config.ui.providers.apple.icon className="w-5 h-5" />
+            {config.ui.providers.apple.label}
           </a>
         </div>
 
         <DrawerFooter>
           <DrawerClose asChild>
             <Button variant="outline" onClick={() => onOpenChange(false)}>
-              Close
+              {config.ui.closeButtonText}
             </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
+}
+
+// Helper function to generate Apple Calendar .ics file
+function generateAppleCalendarUrl(event: CalendarEvent) {
+  const icsContent = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Your Company//EN",
+    "BEGIN:VEVENT",
+    `DTSTART:${formatDateForApple(event.startDate)}`,
+    `DTEND:${formatDateForApple(event.endDate)}`,
+    `SUMMARY:${event.title}`,
+    `DESCRIPTION:${event.description}`,
+    `LOCATION:${event.location}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\n");
+
+  return URL.createObjectURL(new Blob([icsContent], { type: "text/calendar" }));
+}
+
+function formatDateForApple(dateString: string) {
+  return new Date(dateString).toISOString().replace(/-|:|\.\d\d\d/g, "");
 }

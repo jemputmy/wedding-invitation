@@ -10,15 +10,15 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { weddingCountdownConfig, CountdownConfig } from "../../config/config-app-environment";
 
-export default function CountdownTimer() {
-  const [eventDateInClientTZ, setEventDateInClientTZ] =
-    React.useState<Date | null>(null);
+export default function CountdownTimer({ config = weddingCountdownConfig }: { config?: CountdownConfig }) {
+  const [eventDateInClientTZ, setEventDateInClientTZ] = React.useState<Date | null>(null);
 
   React.useEffect(() => {
-    const eventDate = new Date("2025-09-20T08:00:00Z");
+    const eventDate = new Date(config.event.date);
     setEventDateInClientTZ(eventDate);
-  }, []);
+  }, [config.event.date]);
 
   const renderer = ({
     days,
@@ -31,17 +31,17 @@ export default function CountdownTimer() {
       return (
         <div className="text-center space-y-2">
           <Badge className="text-lg py-2 px-4 rounded-full bg-green-100 text-green-800">
-            Hari yang dinanti telah tiba! 🎉
+            {config.ui.completedMessage}
           </Badge>
         </div>
       );
     } else {
       return (
         <div className="grid grid-cols-2 sm:grid-cols-2 gap-1 text-center">
-          <TimeBox value={days} label="Hari" />
-          <TimeBox value={hours} label="Jam" />
-          <TimeBox value={minutes} label="Minit" />
-          <TimeBox value={seconds} label="Saat" />
+          <TimeBox value={days} label={config.ui.timeBoxLabels.days} />
+          <TimeBox value={hours} label={config.ui.timeBoxLabels.hours} />
+          <TimeBox value={minutes} label={config.ui.timeBoxLabels.minutes} />
+          <TimeBox value={seconds} label={config.ui.timeBoxLabels.seconds} />
         </div>
       );
     }
@@ -54,21 +54,20 @@ export default function CountdownTimer() {
       <Card className="w-full max-w-md bg-white text-black shadow-lg border border-gray-200">
         <CardHeader className="text-center space-y-2">
           <Badge variant="outline" className="text-black border-gray-400">
-            Menghitung Hari
+            {config.ui.badgeText}
           </Badge>
           <CardTitle className="text-2xl font-bold text-black">
-            Majlis Perkahwinan
+            {config.event.name}
           </CardTitle>
           <CardDescription className="text-gray-600">
             {eventDateInClientTZ.toLocaleString("ms-MY", {
               dateStyle: "full",
               timeStyle: "short",
-              timeZone: "Asia/Kuala_Lumpur",
+              timeZone: config.event.timeZone,
             })}
           </CardDescription>
-          {/* Adding the event place */}
           <CardDescription className="text-gray-600 font-semibold">
-            Tempat: Dewan Seri Endon, Putrajaya
+            Tempat: {config.event.location}
           </CardDescription>
         </CardHeader>
 
@@ -76,14 +75,8 @@ export default function CountdownTimer() {
           <Countdown date={eventDateInClientTZ} renderer={renderer} />
         </CardContent>
 
-        {/* Adding the Quranic prayer */}
         <CardContent className="space-y-2 text-center text-gray-600 text-xs mt-1">
-          <p className="italic">
-            Ya Allah Ya Rahman Ya Rahim, berkatilah majlis perkahwinan ini.
-            Limpahkanlah baraqah dan rahmatMu kepada kedua-dua mempelai ini.
-            Kurniakanlah mereka kelak zuriat yang soleh dan solehah. Kekalkanlah
-            jodoh mereka hingga ke jannah. Aamiin.
-          </p>
+          <p className="italic">{config.prayer.text}</p>
         </CardContent>
       </Card>
     </div>
