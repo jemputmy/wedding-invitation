@@ -12,7 +12,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PhoneIcon } from "@heroicons/react/24/outline";
 import { FaWhatsapp } from "react-icons/fa";
-import { contactConfig } from "../../../config/config-app-environment";
+import { contactConfig, ContactPerson } from "../../../config/config-app-environment";
 
 export interface CalendarDrawerInterface {
   open: boolean;
