@@ -39,7 +39,6 @@ export interface CountdownConfig {
   };
 }
 
-// config.ts
 export const weddingCountdownConfig: CountdownConfig = {
   event: {
     name: "Majlis Perkahwinan",
@@ -67,6 +66,10 @@ export const weddingCountdownConfig: CountdownConfig = {
 // BOTTOM DOCK CONFIGURATION
 // =====================
 
+/**
+ * Configuration for bottom dock navigation items
+ */
+
 export type DockItemKey =
   | "calendar"
   | "moneyGift"
@@ -74,13 +77,10 @@ export type DockItemKey =
   | "contact"
   | "rsvp";
 
-/**
- * Configuration for bottom dock navigation items
- */
 export interface DockItemConfig {
   key: DockItemKey; // Unique identifier for the dock item
   label: string; // Display text
-  icon: (props: React.ComponentProps<"svg">) => JSX.Element; // Icon component
+  icon: ComponentType<React.SVGProps<SVGSVGElement>>; // Icon component
   show: boolean; // Whether to display this item
 }
 
