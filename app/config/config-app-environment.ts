@@ -1,3 +1,4 @@
+// # 1
 // CountDown Config
 export interface CountdownConfig {
   event: {
@@ -48,8 +49,8 @@ export const weddingCountdownConfig: CountdownConfig = {
 
 // BOTTOM DRAWER CONFIG
 
+// # 2
 // Calendar Drawer
-// types.ts
 export interface CalendarEvent {
   title: string;
   description: string;
@@ -131,5 +132,33 @@ export const meetingCalendarConfig: CalendarDrawerConfig = {
     startDate: "2025-07-15T09:00:00Z",
     endDate: "2025-07-15T11:00:00Z",
     timeZone: "America/New_York",
+  },
+};
+
+//  #3
+// Money gift drawer
+export interface MoneyGiftConfig {
+  accountName: string;
+  accountNumber: string;
+  qrCodeImageUrl: string;
+  translations: {
+    title: string;
+    description: string;
+    copySuccessMessage: string;
+    closeButtonText: string;
+  };
+}
+
+export const moneyGiftConfig: MoneyGiftConfig = {
+  accountName: "Amirul Irfan Bin Khairul Azreem",
+  accountNumber: "1234567890",
+  qrCodeImageUrl:
+    "https://donate.sols.foundation/wp-content/uploads/2022/01/duitnow-qr-code-sols247.png",
+  translations: {
+    title: "Sumbangan Wang",
+    description:
+      "Imbas kod QR atau salin nombor akaun untuk sumbangan ikhlas anda.",
+    copySuccessMessage: "Account number copied!",
+    closeButtonText: "Close",
   },
 };

@@ -13,6 +13,7 @@ import { useState } from "react";
 import { FaCopy } from "react-icons/fa";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
+import { moneyGiftConfig } from "../../../config/config-app-environment";
 
 export interface CalendarDrawerInterface {
   open: boolean;
@@ -23,12 +24,11 @@ export function MoneyGiftDrawer({
   open,
   onOpenChange,
 }: CalendarDrawerInterface) {
-  const accountName = "Amirul Irfan Bin Khairul Azreem";
-  const accountNumber = "1234567890";
+  const { accountName, accountNumber, qrCodeImageUrl, translations } = moneyGiftConfig;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(accountNumber);
-    toast.success("Account number copied!");
+    toast.success(translations.copySuccessMessage);
   };
 
   return (
@@ -36,16 +36,16 @@ export function MoneyGiftDrawer({
       <DrawerTrigger></DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-center">
-          <DrawerTitle>Sumbangan Wang</DrawerTitle>
+          <DrawerTitle>{translations.title}</DrawerTitle>
           <DrawerDescription>
-            Imbas kod QR atau salin nombor akaun untuk sumbangan ikhlas anda.
+            {translations.description}
           </DrawerDescription>
         </DrawerHeader>
 
         <div className="flex flex-col items-center px-4 py-6 space-y-4 text-center">
           {/* QR Code Image */}
           <Image
-            src="https://donate.sols.foundation/wp-content/uploads/2022/01/duitnow-qr-code-sols247.png" // Place this image in your /public folder
+            src={qrCodeImageUrl}
             alt="DuitNow QR"
             width={200}
             height={200}
@@ -71,7 +71,7 @@ export function MoneyGiftDrawer({
         <DrawerFooter>
           <DrawerClose asChild>
             <Button variant="outline" onClick={() => onOpenChange(false)}>
-              Close
+              {translations.closeButtonText}
             </Button>
           </DrawerClose>
         </DrawerFooter>
