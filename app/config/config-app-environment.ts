@@ -162,3 +162,34 @@ export const moneyGiftConfig: MoneyGiftConfig = {
     closeButtonText: "Close",
   },
 };
+
+// #4
+
+// Location drawer
+export interface LocationConfig {
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  translations: {
+    title: string;
+    description: string;
+    googleMapsButtonText: string;
+    wazeButtonText: string;
+    closeButtonText: string;
+  };
+}
+
+export const locationConfig: LocationConfig = {
+  coordinates: {
+    latitude: 3.139003,
+    longitude: 101.6869,
+  },
+  translations: {
+    title: "Lokasi Kami",
+    description: "Gunakan aplikasi di bawah untuk navigasi ke lokasi kami.",
+    googleMapsButtonText: "Open in Google Maps",
+    wazeButtonText: "Navigate with Waze",
+    closeButtonText: "Close",
+  },
+};
