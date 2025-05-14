@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  CalendarIcon,
-  GiftIcon,
-  MapPinIcon,
-  PhoneIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { BOTTOM_DOCK_ITEMS, DockItemKey } from "../../config/config-app-environment";
 import { CalendarDrawer } from "./calendar/calendar.ui";
 import { LocationDrawer } from "./location/location.ui";
 import { ContactDrawer } from "./contact/contact.ui";
@@ -15,79 +9,54 @@ import { MoneyGiftDrawer } from "./money-gift/money-gift.ui";
 import { RSVPModal } from "../rsvp-form/rsvp-form.ui";
 
 export default function BottomDock() {
-  const [isCalendarDrawerOpen, setIsCalendarDrawerOpen] = useState(false);
-  const openCalendarDrawer = () => setIsCalendarDrawerOpen(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState<Record<DockItemKey, boolean>>({
+    calendar: false,
+    moneyGift: false,
+    location: false,
+    contact: false,
+    rsvp: false,
+  });
 
-  const [isMoneyGiftDrawerOpen, setIsMoneyGiftDrawerOpen] = useState(false);
-  const openMoneyGiftDrawer = () => setIsMoneyGiftDrawerOpen(true);
-
-  const [isLocationDrawerOpen, setIsLocationDrawerOpen] = useState(false);
-  const openLocationDrawer = () => setIsLocationDrawerOpen(true);
-
-  const [isContactDrawerOpen, setIsContactDrawerOpen] = useState(false);
-  const openContactDrawer = () => setIsContactDrawerOpen(true);
-
-  const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false);
-  const openRSVPModal = () => setIsRSVPModalOpen(true);
+  const openDrawer = (key: DockItemKey) => {
+    setIsDrawerOpen((prev) => ({ ...prev, [key]: true }));
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm z-50">
       <div className="flex justify-around items-center py-2">
-        <button
-          onClick={openCalendarDrawer}
-          className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
-        >
-          <CalendarIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Kalendar</span>
-        </button>
-        <button
-          onClick={openMoneyGiftDrawer}
-          className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
-        >
-          <GiftIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Money Gift</span>
-        </button>
-        <button
-          onClick={openLocationDrawer}
-          className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
-        >
-          <MapPinIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Lokasi</span>
-        </button>
-        <button
-          onClick={openContactDrawer}
-          className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
-        >
-          <PhoneIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">Hubungi</span>
-        </button>
-        <button
-          onClick={openRSVPModal}
-          className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
-        >
-          <PencilSquareIcon className="w-6 h-6" />
-          <span className="text-xs mt-1">RSVP</span>
-        </button>
+        {BOTTOM_DOCK_ITEMS.filter((item) => item.show).map((item) => (
+          <button
+            key={item.key}
+            onClick={() => openDrawer(item.key)}
+            className="flex-1 flex flex-col items-center text-gray-500 hover:text-black"
+          >
+            <item.icon className="w-6 h-6" />
+            <span className="text-xs mt-1">{item.label}</span>
+          </button>
+        ))}
       </div>
 
-      {/* Drawer components MUST be rendered */}
+      {/* Drawer components (must stay rendered) */}
       <CalendarDrawer
-        open={isCalendarDrawerOpen}
-        onOpenChange={setIsCalendarDrawerOpen}
+        open={isDrawerOpen.calendar}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, calendar: open }))}
       />
       <MoneyGiftDrawer
-        open={isMoneyGiftDrawerOpen}
-        onOpenChange={setIsMoneyGiftDrawerOpen}
+        open={isDrawerOpen.moneyGift}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, moneyGift: open }))}
       />
       <LocationDrawer
-        open={isLocationDrawerOpen}
-        onOpenChange={setIsLocationDrawerOpen}
+        open={isDrawerOpen.location}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, location: open }))}
       />
       <ContactDrawer
-        open={isContactDrawerOpen}
-        onOpenChange={setIsContactDrawerOpen}
+        open={isDrawerOpen.contact}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, contact: open }))}
       />
-      <RSVPModal open={isRSVPModalOpen} onOpenChange={setIsRSVPModalOpen} />
+      <RSVPModal
+        open={isDrawerOpen.rsvp}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, rsvp: open }))}
+      />
     </div>
   );
 }

@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { createRsvp } from "./rsvp-form.server";
+import { RSVP_FORM_CONFIG as CONFIG } from "../../config/config-app-environment";
 
 export function RSVPModal({
   open,
@@ -62,25 +63,23 @@ export function RSVPModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="space-y-4 p-4" onInteractOutside={(e) => {
-          e.preventDefault();
-        }}>
+      <DialogContent className="space-y-4 p-4" onInteractOutside={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle className="text-center text-lg">
-            Isi Maklumat Kehadiran
+            {CONFIG.dialog.title}
           </DialogTitle>
           <DialogDescription className="text-center text-sm text-gray-600">
-            Kami hargai kehadiran dan ucapan anda 🙏
+            {CONFIG.dialog.description}
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleForm} className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="name">Nama Anda</Label>
+            <Label htmlFor="name">{CONFIG.labels.name}</Label>
             <Input
               id="name"
               name="name"
-              placeholder="Contoh: Amirul Irfan"
+              placeholder={CONFIG.placeholders.name}
               required
               value={formValues.name}
               onChange={(e) =>
@@ -90,11 +89,11 @@ export function RSVPModal({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="speech">Ucapan</Label>
+            <Label htmlFor="speech">{CONFIG.labels.speech}</Label>
             <Textarea
               id="speech"
               name="speech"
-              placeholder="Ucapan anda..."
+              placeholder={CONFIG.placeholders.speech}
               rows={3}
               value={formValues.speech}
               required
@@ -117,12 +116,12 @@ export function RSVPModal({
                 }));
               }}
             />
-            <Label htmlFor="isAttend">Saya Hadir</Label>
+            <Label htmlFor="isAttend">{CONFIG.labels.isAttend}</Label>
           </div>
 
           {formValues.isAttend && (
             <div className="space-y-1.5">
-              <Label htmlFor="total_person">Bilangan Rombongan</Label>
+              <Label htmlFor="total_person">{CONFIG.labels.totalPerson}</Label>
               <Select
                 name="total_person"
                 value={formValues.total_person}
@@ -132,7 +131,7 @@ export function RSVPModal({
                 required
               >
                 <SelectTrigger id="total_person">
-                  <SelectValue placeholder="Pilih bilangan rombongan" />
+                  <SelectValue placeholder={CONFIG.placeholders.totalPerson} />
                 </SelectTrigger>
                 <SelectContent>
                   {Array.from({ length: 5 }, (_, i) => (
@@ -151,7 +150,7 @@ export function RSVPModal({
               disabled={loading || (formValues.isAttend && !formValues.total_person)}
               className="w-full bg-pink-500 text-white hover:bg-pink-600"
             >
-              {loading ? "Menghantar..." : "Hantar RSVP"}
+              {loading ? CONFIG.buttons.submitLoading : CONFIG.buttons.submit}
             </Button>
 
             <Button
@@ -160,7 +159,7 @@ export function RSVPModal({
               className="w-full"
               onClick={() => onOpenChange(false)}
             >
-              Batal
+              {CONFIG.buttons.cancel}
             </Button>
           </div>
         </form>
@@ -171,15 +170,15 @@ export function RSVPModal({
         <DialogContent className="text-center">
           <DialogHeader className="flex flex-col items-center gap-2">
             <CheckCircle2 className="w-12 h-12 text-green-600 bg-green-100 rounded-full p-1" />
-            <DialogTitle className="text-xl">Terima kasih!</DialogTitle>
-            <DialogDescription>Respon anda telah diterima</DialogDescription>
+            <DialogTitle className="text-xl">{CONFIG.dialog.successTitle}</DialogTitle>
+            <DialogDescription>{CONFIG.dialog.successMessage}</DialogDescription>
           </DialogHeader>
           <DialogFooter className="justify-center">
             <Button
               className="bg-pink-500 text-white"
               onClick={() => setShowDialog(false)}
             >
-              Tutup
+              {CONFIG.buttons.close}
             </Button>
           </DialogFooter>
         </DialogContent>
