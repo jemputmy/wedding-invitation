@@ -55,7 +55,7 @@ export function CalendarDrawer({
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
           >
-            <config.ui.providers.google.icon className="w-5 h-5" />
+            <config.ui.providers.google.icon />
             {config.ui.providers.google.label}
           </a>
 
@@ -64,7 +64,7 @@ export function CalendarDrawer({
             download="event.ics"
             className="flex items-center justify-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 transition"
           >
-            <config.ui.providers.apple.icon className="w-5 h-5" />
+            <config.ui.providers.apple.icon />
             {config.ui.providers.apple.label}
           </a>
         </div>
