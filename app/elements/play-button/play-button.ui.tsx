@@ -18,12 +18,7 @@ export function IsPlayMusicDialog() {
   useEffect(() => {
     audioRef.current = new Audio("/song.mp3");
     audioRef.current.loop = true;
-
-    const timer = setTimeout(() => {
-      setOpen(true);
-    }, 500);
-
-    return () => clearTimeout(timer);
+    setOpen(true); // Immediately open the modal
   }, []);
 
   const handlePlayMusic = () => {
