@@ -1,22 +1,22 @@
-'use client';
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-  DialogClose
 } from "@/components/ui/dialog";
-import { useEffect, useState, useRef } from 'react';
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
 
 export function IsPlayMusicDialog() {
   const [open, setOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio('/song.mp3');
+    audioRef.current = new Audio("/song.mp3");
     audioRef.current.loop = true;
 
     const timer = setTimeout(() => {
@@ -34,43 +34,41 @@ export function IsPlayMusicDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0">
-        <div className="h-full flex flex-col">
-          <DialogHeader className="p-6 bg-pink-50">
-            <DialogTitle className="text-2xl">Mainkan Lagu?</DialogTitle>
-            <DialogDescription className="text-lg">
-              Background music can enhance your experience. Would you like to turn it on?
-            </DialogDescription>
+        <div className="h-full flex flex-col relative">
+          <DialogHeader>
+            <DialogTitle></DialogTitle>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
-          
-          <div className="flex-1 p-6 flex items-center justify-center">
-            {/* Optional: Add a music visualizer or cover art here */}
-            <div className="text-center">
-              <p className="mb-4">🎵 Music will play in the background 🎵</p>
-            </div>
+
+          {/* Video layer */}
+          <div className="absolute top-0 left-0 w-full h-full -z-10">
+            <video
+              src="https://xhpugefhcgqjkanhmanu.supabase.co/storage/v1/object/public/wedding-video/Wedding-flying-birds.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          <DialogFooter className="p-6 bg-gray-50 sm:justify-center gap-4">
-            <DialogClose asChild>
-              <Button 
-                className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 text-lg"
-                onClick={handlePlayMusic}
-              >
-                Yes, Play Music
-              </Button>
-            </DialogClose>
-            <DialogClose asChild>
-              <Button 
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-8 py-4 text-lg"
-                variant="outline"
-              >
-                No Thanks
-              </Button>
-            </DialogClose>
-          </DialogFooter>
+          {/* Buttons on top */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <DialogFooter className="p-6 bg-white bg-opacity-70 rounded-md sm:justify-center gap-4">
+              <DialogClose asChild>
+                <Button
+                  className="bg-white bg-opacity-100 hover:bg-opacity-90 text-black px-8 py-4 text-lg border-2 border-gray-300"
+                  onClick={handlePlayMusic}
+                >
+                  Buka
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
   );
 }
 
-export default IsPlayMusicDialog
+export default IsPlayMusicDialog;
