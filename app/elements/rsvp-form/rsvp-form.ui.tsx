@@ -45,12 +45,24 @@ export function RSVPModal({
     try {
       setLoading(true);
       await createRsvp(formData);
+      await fetch('/api/email', {
+        method: 'POST',
+        cache: 'no-cache',
+        body: JSON.stringify({
+          name: formValues.name,
+          ucapan: formValues.speech
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       setFormValues({
         name: "",
         speech: "",
         isAttend: false,
         total_person: "",
-      });
+      })
+    
       setShowDialog(true);
       onOpenChange(false);
     } catch (err) {

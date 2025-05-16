@@ -29,6 +29,8 @@ export function IsPlayMusicDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
+      <DialogHeader></DialogHeader>
+      <DialogTitle></DialogTitle>
       <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0">
         <div className="h-full flex flex-col relative">
           {/* Video Background */}
