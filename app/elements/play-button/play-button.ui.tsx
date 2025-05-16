@@ -36,7 +36,7 @@ export function IsPlayMusicDialog() {
           {/* Video Background */}
           <div className="absolute top-0 left-0 w-full h-full -z-10">
             <video
-              src="https://xhpugefhcgqjkanhmanu.supabase.co/storage/v1/object/public/wedding-video//weddingVideoFLying.mp4"
+              src="https://xhpugefhcgqjkanhmanu.supabase.co/storage/v1/object/public/wedding-video//open%20door.mp4"
               autoPlay
               loop
               muted
