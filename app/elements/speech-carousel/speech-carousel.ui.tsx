@@ -1,22 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+import CarouselUiConfig from "./speech-carousel-config/speech-carousel.config.ui";
 import { fetchRsvp } from "./speech-carousel.server";
-import { Quote, CheckCircle2 } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { motion } from "framer-motion";
 
 // Define RsvpData type
-type RsvpData = {
+export type RsvpData = {
   name: string;
   speech: string;
   isAttend: boolean;
@@ -41,87 +31,25 @@ export function SpeechCarousel() {
 
   return (
     <div>
-      <div className="text-2xl md:text-4xl italic underline text-gray-900 text-center mb-5">
-        Senarai Ucapan
-      </div>
-
-      {/* Slide Hint */}
-      <motion.div
-        initial={{ opacity: 0, x: -10 }}
-        animate={{ opacity: 1, x: 10 }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className="text-center text-sm text-gray-500 italic mb-2 flex items-center justify-center gap-1"
-      >
-        <span>←</span>
-        <span>Sila slide</span>
-        <span>→</span>
-      </motion.div>
-
-      <Carousel className="w-full">
-        <CarouselContent>
-          {rsvpList.map((item, index) => (
-            <CarouselItem key={index} className="w-full">
-              <div className="p-1">
-                <Card className="w-full bg-white shadow-md">
-                  <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[150px]">
-                    {/* Hadir Text */}
-                    <div className="flex items-center text-sm text-green-600 ms-10">
-                      {item.isAttend && (
-                        <>
-                          <CheckCircle2 className="w-4 h-4" />&nbsp;
-                          <span>
-                            Hadir{" "}
-                            {item.total_person === 1
-                              ? "seorang"
-                              : `${item.total_person} orang`}
-                          </span>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Avatar and Info Section */}
-                    <div className="flex items-center gap-3">
-                      <Avatar className="bg-white">
-                        <AvatarImage
-                          src={item.avatarUrl || "https://via.placeholder.com/150"}
-                          alt={item.name}
-                        />
-                        <AvatarFallback>
-                          {item.name.slice(0, 2).toUpperCase()}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex flex-col justify-center">
-                        <span className="text-lg md:text-2xl font-bold text-gray-800 break-words">
-                          {item.name}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Quote and Speech */}
-                    <div className="flex items-start gap-2">
-                      <Quote className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
-                      <ScrollArea className="max-h-40 overflow-auto max-w-[calc(100%-1.75rem)]">
-                        <p className="text-sm md:text-base italic text-gray-700 whitespace-pre-line break-words">
-                          "{item.speech}"
-                        </p>
-                      </ScrollArea>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="bg-pink-500/80 text-white hover:bg-pink-600 transition-colors" />
-          <CarouselNext className="bg-pink-500/80 text-white hover:bg-pink-600 transition-colors" />
+      {rsvpList.length > 0 ? (
+        <div className="flex justify-center ">
+          <CarouselUiConfig
+            baseWidth={370}
+            autoplay={true}
+            autoplayDelay={3000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+            items={rsvpList}
+          />
         </div>
-      </Carousel>
+      ) : (
+        <div className="flex p-2 justify-center ">
+          <Card className="relative overflow-hidden p-4 border-gray-200 bg-white">
+            <CardContent className="w-75 h-50">TEST</CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
