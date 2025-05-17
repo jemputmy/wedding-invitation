@@ -8,7 +8,7 @@ export function CanvaDesign() {
       {CANVA_IMAGES.map((img: CanvaImage) => (
         <div
           key={img.id}
-          className="relative w-full max-w-md mx-auto aspect-[5/7] shadow-md rounded-lg overflow-hidden mb-2"
+          className="relative w-full max-w-md mx-auto aspect-[4/7] shadow-md rounded-lg overflow-hidden mb-2"
         >
           <Image
             src={img.url}

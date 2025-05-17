@@ -404,8 +404,13 @@ export interface CanvaImage {
 export const CANVA_IMAGES: CanvaImage[] = [
   {
     id: "1",
-    url: "https://drive.google.com/uc?export=view&id=1QYgxWJMB9j3N3KFMgYnjZ1Rpx8P0qwrQ",
-    alt: "Canva Design 1",
+    url: "https://drive.google.com/uc?export=view&id=1oOV8gwGT6lS8J_qTz_aQunJG7DZPuh-s",
+    alt: "Main Image",
+  },
+  {
+    id: "2",
+    url: "https://drive.google.com/uc?export=view&id=1Wiw9h9uDxYUZc49yrUR3iHD2Y0z2zzcY",
+    alt: "Invitation image",
   },
 ];
 
@@ -420,6 +425,6 @@ export interface BaseBackgroundImage {
 
 export const BASE_BACKGROUND_IMAGE: BaseBackgroundImage = {
   id: "bg-1",
-  url: "https://drive.google.com/uc?export=view&id=1Aa0idR6jqbBKwvBk9R6mYNLrwoCPKYfn",
+  url: "https://drive.google.com/uc?export=view&id=1Uhj3i5Fqmc67in9H6F_dvW9c6faHX98v",
   alt: "Canva Design Background",
 };

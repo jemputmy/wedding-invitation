@@ -4,7 +4,7 @@ import { BASE_BACKGROUND_IMAGE } from "../../config/config-app-environment";
 
 export function BaseBackground() {
   return (
-    <div className="relative w-full max-w-md mx-auto aspect-[5/7] shadow-md rounded-lg overflow-hidden mb-2">
+    <div className="relative w-full max-w-md mx-auto aspect-[4/7] shadow-md rounded-lg overflow-hidden mb-2">
       <Image
         src={BASE_BACKGROUND_IMAGE.url}
         alt={BASE_BACKGROUND_IMAGE.alt}
