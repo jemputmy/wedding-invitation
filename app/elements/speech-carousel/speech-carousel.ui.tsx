@@ -37,7 +37,7 @@ export function SpeechCarousel() {
           <CarouselUiConfig
             baseWidth={370}
             autoplay={true}
-            autoplayDelay={5000}
+            autoplayDelay={7000}
             pauseOnHover={true}
             loop={true}
             round={false}

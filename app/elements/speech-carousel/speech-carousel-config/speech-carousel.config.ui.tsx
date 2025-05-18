@@ -78,9 +78,9 @@ const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
 
 export default function CarouselUiConfig({
   items = [],
-  baseWidth = 300,
+  baseWidth = 0,
   autoplay = false,
-  autoplayDelay = 3000,
+  autoplayDelay = 0,
   pauseOnHover = false,
   loop = false,
   round = false,
