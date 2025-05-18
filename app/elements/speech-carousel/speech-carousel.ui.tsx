@@ -12,6 +12,7 @@ export type RsvpData = {
   isAttend: boolean;
   total_person: number;
   avatarUrl: string;
+  created_at: string;
 };
 
 export function SpeechCarousel() {
@@ -36,7 +37,7 @@ export function SpeechCarousel() {
           <CarouselUiConfig
             baseWidth={370}
             autoplay={true}
-            autoplayDelay={3000}
+            autoplayDelay={5000}
             pauseOnHover={true}
             loop={true}
             round={false}
@@ -46,7 +47,7 @@ export function SpeechCarousel() {
       ) : (
         <div className="flex p-2 justify-center ">
           <Card className="relative overflow-hidden p-4 border-gray-200 bg-white">
-            <CardContent className="w-75 h-50">TEST</CardContent>
+            <CardContent className="w-75 h-50"></CardContent>
           </Card>
         </div>
       )}

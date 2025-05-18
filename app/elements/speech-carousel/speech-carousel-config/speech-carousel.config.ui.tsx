@@ -8,12 +8,18 @@ import {
   FiLayers,
   FiLayout,
 } from "react-icons/fi";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { RsvpData } from "../speech-carousel.ui";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CheckCircle2, Quote } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 
 export interface CarouselItem {
   title: string;
@@ -62,44 +68,6 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Common UI components are coming soon!",
     id: 5,
     icon: <FiCode className="h-[16px] w-[16px] text-gray-400" />,
-  },
-];
-
-const mockRsvpData: RsvpData[] = [
-  {
-    name: "Aminah Binti Zulkifli",
-    speech: "Tahniah kepada pengantin! Semoga bahagia hingga ke syurga. 🥰",
-    isAttend: true,
-    total_person: 2,
-    avatarUrl: "",
-  },
-  {
-    name: "Mohd Faizal",
-    speech: "Selamat pengantin baru! Moga murah rezeki dan diberkati selalu.",
-    isAttend: false,
-    total_person: 0,
-    avatarUrl: "",
-  },
-  {
-    name: "Nurul Huda",
-    speech: "Semoga jodoh berkekalan dan bahagia selalu. Amin!",
-    isAttend: true,
-    total_person: 1,
-    avatarUrl: "",
-  },
-  {
-    name: "Syafiq Roslan",
-    speech: "Terbaik bro! Tahniah dan selamat menempuh alam rumah tangga.",
-    isAttend: true,
-    total_person: 3,
-    avatarUrl: "",
-  },
-  {
-    name: "Farah Izzati",
-    speech: "Alhamdulillah, semoga perkahwinan ini diberkati dan dirahmati. 💖",
-    isAttend: false,
-    total_person: 0,
-    avatarUrl: "",
   },
 ];
 
@@ -216,7 +184,7 @@ export default function CarouselUiConfig({
         </span>
       </CardHeader>
       <motion.div
-        className="flex h-60"
+        className="flex h-80"
         drag="x"
         {...dragProps}
         style={{
@@ -259,28 +227,25 @@ export default function CarouselUiConfig({
             >
               <CardContent className="flex flex-col gap-4 p-4 md:p-6 min-h-[150px]">
                 {/* Hadir Text */}
-                <Badge
-                  variant={item.isAttend ? "outline" : null}
-                  className={` ${
-                    item.isAttend ? "border-gray-400 text-black" : ""
-                  }`}
-                >
-                  {" "}
-                  <div className="flex items-center text-sm text-green-600 mx-2">
-                    {item.isAttend && (
-                      <>
-                        <CheckCircle2 className="w-4 h-4" />
-                        &nbsp;
-                        <span>
-                          Hadir{" "}
-                          {item.total_person === 1
-                            ? "seorang"
-                            : `${item.total_person} orang`}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                </Badge>
+                {item.isAttend ? (
+                  <Badge
+                    variant="outline"
+                    className="border-gray-400 text-black"
+                  >
+                    <div className="flex items-center text-sm text-green-600 mx-2">
+                      <CheckCircle2 className="w-4 h-4" />
+                      &nbsp;
+                      <span>
+                        Hadir{" "}
+                        {item.total_person === 1
+                          ? "seorang"
+                          : `${item.total_person} orang`}
+                      </span>
+                    </div>
+                  </Badge>
+                ) : (
+                  <div className="mx-2"></div>
+                )}
 
                 {/* Avatar and Info Section */}
                 <div className="flex items-center gap-3">
@@ -301,17 +266,31 @@ export default function CarouselUiConfig({
                 </div>
 
                 {/* Quote and Speech */}
-                <div className="flex items-start gap-2 bg-gray-200 rounded-md">
-                  <div className="mx-4 flex justify-between py-2">
-                    <Quote className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
-                    <ScrollArea className="max-h-40 overflow-auto max-w-[calc(100%-1.75rem)]">
-                      <p className="text-sm md:text-base italic text-gray-700 whitespace-pre-line break-words">
-                        "{item.speech}"
+
+                <div className="h-80 w-full py-3 bg-gray-200 my-2 rounded-md border-black">
+                  <ScrollArea className="h-20 px-3 overflow-auto">
+                    <div className="flex items-start">
+                      <Quote className="w-4 h-4 text-gray-400 mr-2 mt-1 shrink-0" />
+                      <p className="font-sans text-sm text-gray-800 italic break-words">
+                        {item.speech}
                       </p>
-                    </ScrollArea>
-                  </div>
+                    </div>
+                  </ScrollArea>
                 </div>
               </CardContent>
+              <CardFooter>
+                <div className="my-3">
+                  <Label className="font-base bold text-sm">
+                    {new Date(
+                        item.created_at
+                    ).toLocaleDateString("ms-MY", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </Label>
+                </div>
+              </CardFooter>
             </motion.div>
           );
         })}
