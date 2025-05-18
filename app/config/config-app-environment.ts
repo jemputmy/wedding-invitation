@@ -376,7 +376,7 @@ export const RSVP_FORM_CONFIG: RSVPFormConfig = {
   },
   dialog: {
     title: "Isi Maklumat Kehadiran",
-    description: "Kami hargai kehadiran dan ucapan anda 🙏",
+    description: "Kami hargai kehadiran dan ucapan anda",
     successTitle: "Terima kasih!",
     successMessage: "Respon anda telah diterima",
   },
