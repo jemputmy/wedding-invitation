@@ -35,7 +35,7 @@ export function SpeechCarousel() {
       {rsvpList.length > 0 ? (
         <div className="flex justify-center ">
           <CarouselUiConfig
-            baseWidth={370}
+            baseWidth={360}
             autoplay={true}
             autoplayDelay={7000}
             pauseOnHover={true}
