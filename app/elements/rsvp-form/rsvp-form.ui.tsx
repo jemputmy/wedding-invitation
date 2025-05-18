@@ -20,8 +20,39 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
-import { createRsvp } from "./rsvp-form.server";
+import { createRsvp, fetchRsvpData } from "./rsvp-form.server";
 import { RSVP_FORM_CONFIG as CONFIG } from "../../config/config-app-environment";
+import { RsvpData } from "../speech-carousel/speech-carousel.ui";
+
+
+
+async function sendRsvpMessage(name: string, ucpan: string) {
+  await fetch('/api/email-message', {
+    method: 'POST',
+    cache: 'no-cache',
+    body: JSON.stringify({
+      name: name,
+      ucapan: ucpan
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
+async function sendHeadCountMessage() {
+  const { data }: { data: RsvpData[] } = await fetchRsvpData();
+  await fetch('/api/email-headcount', {
+    method: 'POST',
+    cache: 'no-cache',
+    body: JSON.stringify({
+      data: data,
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
 
 export function RSVPModal({
   open,
@@ -38,6 +69,15 @@ export function RSVPModal({
     isAttend: false,
     total_person: "",
   });
+  const  clearFormValues = async () => {
+    await setFormValues({
+      name: "",
+      speech: "",
+      isAttend: false,
+      total_person: "",
+    });
+  };
+  
 
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,24 +85,9 @@ export function RSVPModal({
     try {
       setLoading(true);
       await createRsvp(formData);
-      await fetch('/api/email', {
-        method: 'POST',
-        cache: 'no-cache',
-        body: JSON.stringify({
-          name: formValues.name,
-          ucapan: formValues.speech
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      setFormValues({
-        name: "",
-        speech: "",
-        isAttend: false,
-        total_person: "",
-      })
-    
+      await sendRsvpMessage(formValues.name, formValues.speech)
+      await sendHeadCountMessage()
+      await clearFormValues()
       setShowDialog(true);
       onOpenChange(false);
     } catch (err) {

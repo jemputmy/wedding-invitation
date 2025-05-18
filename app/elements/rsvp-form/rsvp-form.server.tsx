@@ -23,16 +23,17 @@ export async function createRsvp(formData: FormData) {
   console.log('Insert successful:', data)
 }
 
-export async function fetchRsvp() {
-  const { data, error } = await supabase
+
+export async function fetchRsvpData() {
+  const { data, count, error } = await supabase
     .from('Rsvp')
-    .select('*')
-    .order('created_at', { ascending: false })
+    .select('*', { count: 'exact' }) // Include row count
+    .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Fetch failed:', error.message)
-    throw new Error('Failed to fetch RSVPs')
+    console.error('Fetch failed:', error.message);
+    throw new Error('Failed to fetch RSVPs');
   }
 
-  return data
+  return { data };
 }
