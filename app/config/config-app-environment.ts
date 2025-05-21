@@ -247,9 +247,9 @@ export interface MoneyGiftConfig {
 export const moneyGiftConfig: MoneyGiftConfig = {
   accountName: "Juana Binti Ahmad",
   bankName: "Maybank",
-  accountNumber: "1234567890",
+  accountNumber: "564418702167",
   qrCodeImageUrl:
-    "https://donate.sols.foundation/wp-content/uploads/2022/01/duitnow-qr-code-sols247.png",
+    "https://drive.google.com/uc?export=view&id=1jDFkp0BNEiXsda8tu7rlGl7Go92AtOpx",
   translations: {
     title: "Salam Kaut",
     description: "Imbas kod QR atau salin nombor akaun",
