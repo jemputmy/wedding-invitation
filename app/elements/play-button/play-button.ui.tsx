@@ -48,7 +48,7 @@ export function IsPlayMusicDialog() {
 
           {/* CTA Button */}
           <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10">
-            <DialogFooter className="p-6 bg-white/5 backdrop-blur-sm rounded-full sm:justify-center gap-4 border border-white/20">
+            <DialogFooter className="p-6 bg-white/5  rounded-full sm:justify-center gap-4 border border-white/20">
               <DialogClose asChild>
                 <Button
                   id="playButton"
