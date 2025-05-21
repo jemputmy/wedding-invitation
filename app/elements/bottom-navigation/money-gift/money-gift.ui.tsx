@@ -24,7 +24,7 @@ export function MoneyGiftDrawer({
   open,
   onOpenChange,
 }: CalendarDrawerInterface) {
-  const { accountName, accountNumber, qrCodeImageUrl, translations } = moneyGiftConfig;
+  const { accountName, accountNumber, bankName, qrCodeImageUrl, translations } = moneyGiftConfig;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(accountNumber);
@@ -54,6 +54,8 @@ export function MoneyGiftDrawer({
 
           {/* Account Owner Name */}
           <div className="text-lg font-semibold">{accountName}</div>
+
+          <div className="text-base text-gray-600">{bankName}</div>
 
           {/* Account Number with Copy Button */}
           <div className="flex items-center gap-2">

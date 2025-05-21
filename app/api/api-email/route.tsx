@@ -1,4 +1,5 @@
 
+import { serverConfig } from "@/app/config/config-app-environment";
 import { NextResponse } from "next/server";
 const nodemailer = require("nodemailer");
 
@@ -32,8 +33,8 @@ export async function POST(request: Request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: `arfankareem1002@gmail.com`,
-      pass: `omie yntf uidt rkow`, // ⚠️ Avoid hardcoding this
+      user: serverConfig.serverEmail,
+      pass: serverConfig.serverPassword, // ⚠️ Avoid hardcoding this
     },
     tls: {
       rejectUnauthorized: false,

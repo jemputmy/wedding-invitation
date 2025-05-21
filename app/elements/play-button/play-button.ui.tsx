@@ -1,4 +1,5 @@
 "use client";
+import { backgroundVideoConfig } from "@/app/config/config-app-environment";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -36,57 +37,13 @@ export function IsPlayMusicDialog() {
           {/* Video Background */}
           <div className="absolute top-0 left-0 w-full h-full -z-10">
             <video
-              src="https://xhpugefhcgqjkanhmanu.supabase.co/storage/v1/object/public/wedding-video//open%20door.mp4"
+              src={backgroundVideoConfig.url}
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover"
             />
-          </div>
-
-          {/* Elegant Centered Text */}
-          <div className="flex-grow flex items-center justify-center px-4">
-            <div className="text-center max-w-2xl space-y-6">
-              {/* Decorative Top Element */}
-              <div className="flex justify-center">
-                <div className="h-px w-16 bg-white/50 mb-6"></div>
-              </div>
-
-              {/* Main Invitation Text */}
-              <h1 className="text-5xl md:text-6xl font-light tracking-wider text-white font-playfair leading-tight">
-                Raikan Cinta
-              </h1>
-              
-              <div className="py-2">
-                <h2 className="text-6xl md:text-7xl font-medium text-white font-cormorant leading-none mb-2">
-                  Amirul
-                </h2>
-                <span className="text-3xl text-white/80 font-light">&</span>
-                <h2 className="text-6xl md:text-7xl font-medium text-white font-cormorant leading-none mt-2">
-                  Aisyah
-                </h2>
-              </div>
-
-              <div className="text-xl md:text-2xl font-light tracking-widest text-white/90 font-montserrat uppercase">
-                Menjemput anda semua
-              </div>
-
-              {/* Date and Location */}
-              <div className="pt-6 space-y-1 font-montserrat">
-                <div className="text-lg md:text-xl text-white/90 tracking-wider">
-                  20 September 2025
-                </div>
-                <div className="text-base md:text-lg text-white/80 font-light">
-                  Wedding Galore Sungai Buah
-                </div>
-              </div>
-
-              {/* Decorative Bottom Element */}
-              <div className="flex justify-center pt-6">
-                <div className="h-px w-16 bg-white/50 mt-6"></div>
-              </div>
-            </div>
           </div>
 
           {/* CTA Button */}

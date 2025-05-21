@@ -1,3 +1,4 @@
+import { emailConfig, serverConfig } from "@/app/config/config-app-environment";
 import { RsvpData } from "@/app/elements/speech-carousel/speech-carousel.ui";
 import { NextResponse } from "next/server";
 const nodemailer = require("nodemailer");
@@ -42,7 +43,7 @@ export async function POST(req: Request) {
 
     const message = {
       from: "Kad Kawen Online",
-      to: ["izhatieaisyah@gmail.com", "arfankareem1002@gmail.com"],
+      to: emailConfig.organizerEmailList,
       subject: "Bilangan Kehadiran Tetamu Terkini",
       html: htmlContent,
       headers: {
@@ -53,8 +54,8 @@ export async function POST(req: Request) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "arfankareem1002@gmail.com",
-        pass: "omie yntf uidt rkow", // ⚠️ move this to env var
+        user: serverConfig.serverEmail,
+        pass: serverConfig.serverPassword, 
       },
       tls: {
         rejectUnauthorized: false,

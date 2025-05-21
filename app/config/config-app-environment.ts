@@ -9,6 +9,47 @@ import { ComponentType, JSX } from "react";
 import { FaGoogle, FaApple } from "react-icons/fa";
 
 // ======================
+// SERVER CONFIGURATION
+// ======================
+
+/**
+ * Configuration for the server
+ */
+export interface ServerConfig {
+  supabaseKey: string;
+  supabaseAnonKey: string;
+  rsvpTableName: string;
+  serverEmail: string;
+  serverPassword: string;
+}
+
+export const serverConfig: ServerConfig = {
+  supabaseKey: "https://xhpugefhcgqjkanhmanu.supabase.co",
+  supabaseAnonKey:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhocHVnZWZoY2dxamthbmhtYW51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4ODM1MjEsImV4cCI6MjA2MjQ1OTUyMX0.xTtQoriMeofCpAnaAd6c9IZbVI1pOzGt6nYQbgVEOHI",
+  rsvpTableName: "Rsvp",
+  serverEmail: "arfankareem1002@gmail.com",
+  serverPassword: "omie yntf uidt rkow",
+};
+
+// ======================
+// EMAIL CONFIGURATION
+// ======================
+
+/**
+ * Configuration for the email component
+ */
+export interface EmailConfig {
+  organizerEmailList: string[];
+  brideEmailList: string[];
+}
+
+export const emailConfig: EmailConfig = {
+  organizerEmailList: ["izhatieaisyah@gmail.com", "arfankareem1002@gmail.com"],
+  brideEmailList: ["izhatieaisyah@gmail.com", "arfankareem1002@gmail.com"],
+};
+
+// ======================
 // COUNTDOWN CONFIGURATION
 // ======================
 
@@ -42,14 +83,14 @@ export interface CountdownConfig {
 export const weddingCountdownConfig: CountdownConfig = {
   event: {
     name: "Majlis Perkahwinan",
-    date: "2025-09-20T08:00:00Z",
+    date: "2025-09-20T03:00:00Z",
     timeZone: "Asia/Kuala_Lumpur",
-    location: "Dewan Seri Endon, Putrajaya",
+    location: "Sebening Embun Garden Event Hall",
   },
   ui: {
-    title: "Majlis Perkahwinan",
+    title: "Walimatul Urus Amirul & Aisyah",
     badgeText: "Menghitung Hari",
-    completedMessage: "Hari yang dinanti telah tiba! 🎉",
+    completedMessage: "Hari yang dinanti telah tiba",
     timeBoxLabels: {
       days: "Hari",
       hours: "Jam",
@@ -93,7 +134,7 @@ export const BOTTOM_DOCK_ITEMS: DockItemConfig[] = [
   },
   {
     key: "moneyGift",
-    label: "Money Gift",
+    label: "Salam Kaut",
     icon: GiftIcon,
     show: true,
   },
@@ -174,11 +215,11 @@ export const weddingCalendarConfig: CalendarDrawerConfig = {
     },
   },
   event: {
-    title: "Majlis Perkahwinan",
-    description: "Sertai kami untuk meraikan hari istimewa!",
-    location: "Dewan Seri Endon, Putrajaya",
-    startDate: "2025-06-01T10:00:00Z",
-    endDate: "2025-06-01T14:00:00Z",
+    title: "Walimatul Urus Amirul & Aisyah",
+    description: "",
+    location: "Sebening Embun Garden Event Hall",
+    startDate: "2025-06-01T03:00:00Z",
+    endDate: "2025-06-01T08:00:00Z",
     timeZone: "Asia/Kuala_Lumpur",
   },
 };
@@ -192,6 +233,7 @@ export const weddingCalendarConfig: CalendarDrawerConfig = {
  */
 export interface MoneyGiftConfig {
   accountName: string; // Name on the bank account
+  bankName: string; // Bank Name on the bank account
   accountNumber: string; // Bank account number
   qrCodeImageUrl: string; // URL of QR code image
   translations: {
@@ -203,14 +245,14 @@ export interface MoneyGiftConfig {
 }
 
 export const moneyGiftConfig: MoneyGiftConfig = {
-  accountName: "Amirul Irfan Bin Khairul Azreem",
+  accountName: "Juana Binti Ahmad",
+  bankName: "Maybank",
   accountNumber: "1234567890",
   qrCodeImageUrl:
     "https://donate.sols.foundation/wp-content/uploads/2022/01/duitnow-qr-code-sols247.png",
   translations: {
-    title: "Sumbangan Wang",
-    description:
-      "Imbas kod QR atau salin nombor akaun untuk sumbangan ikhlas anda.",
+    title: "Salam Kaut",
+    description: "Imbas kod QR atau salin nombor akaun",
     copySuccessMessage: "Account number copied!",
     closeButtonText: "Tutup",
   },
@@ -239,8 +281,8 @@ export interface LocationConfig {
 
 export const locationConfig: LocationConfig = {
   coordinates: {
-    latitude: 3.139003,
-    longitude: 101.6869,
+    latitude: 2.8868436949766383,
+    longitude: 101.76270193604462,
   },
   translations: {
     title: "Lokasi Kami",
@@ -295,7 +337,7 @@ export const contactConfig: ContactConfig = {
     {
       name: "Amirul Irfan",
       phone: "+60196643494",
-      designation: "Bapa Pengantin Lelaki",
+      designation: "Pengantin Lelaki",
       avatarOptions: {
         background: "random", // or specific color
         color: "#ffffff",
@@ -303,14 +345,19 @@ export const contactConfig: ContactConfig = {
       },
     },
     {
-      name: "Syazwan Salleh",
-      phone: "+60123456789",
-      designation: "Bapa Pengantin Perempuan",
+      name: "Nur Izhatie Aisyah",
+      phone: "+60123611306",
+      designation: "Pengantin Perempuan",
     },
     {
-      name: "Nadia Aiman",
-      phone: "+60198765432",
-      designation: "Pengantin Lelaki",
+      name: "Juana Binti Ahmad",
+      phone: "+60193823494",
+      designation: "Ibu Pengantin Lelaki",
+    },
+    {
+      name: "Norhaizan Binti Jumaat",
+      phone: "+01131737650",
+      designation: "Ibu Pengantin Perempuan",
     },
   ],
   translations: {
@@ -427,4 +474,18 @@ export const BASE_BACKGROUND_IMAGE: BaseBackgroundImage = {
   id: "bg-1",
   url: "https://drive.google.com/uc?export=view&id=1Uhj3i5Fqmc67in9H6F_dvW9c6faHX98v",
   alt: "Canva Design Background",
+};
+
+/**
+ * Configuration for play video
+ */
+
+export interface BackgroundVideoConfig {
+  url: string;
+  alt: string;
+}
+
+export const backgroundVideoConfig: BackgroundVideoConfig = {
+  url: "https://xhpugefhcgqjkanhmanu.supabase.co/storage/v1/object/public/wedding-video//AI%20IA%20initials.mp4",
+  alt: "Wedding Background Video",
 };

@@ -1,6 +1,7 @@
 // app/elements/rsvp-form/rsvp-form.server.ts
 'use server'
 
+import { serverConfig } from '@/app/config/config-app-environment'
 import { supabase } from '@/app/config/config-supabase'
 
 export async function createRsvp(formData: FormData) {
@@ -11,7 +12,7 @@ export async function createRsvp(formData: FormData) {
 
   
   const { data, error } = await supabase
-    .from('Rsvp')
+    .from(serverConfig.rsvpTableName)
     .insert([{ name, speech, isAttend, total_person: totalPerson }])
     .select()
 
@@ -26,7 +27,7 @@ export async function createRsvp(formData: FormData) {
 
 export async function fetchRsvpData() {
   const { data, count, error } = await supabase
-    .from('Rsvp')
+    .from(serverConfig.rsvpTableName)
     .select('*', { count: 'exact' }) // Include row count
     .order('created_at', { ascending: false });
 
