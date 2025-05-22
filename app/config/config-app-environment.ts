@@ -364,7 +364,7 @@ export const contactConfig: ContactConfig = {
     },
     {
       name: "Norhaizan Binti Jumaat",
-      phone: "+01131737650",
+      phone: "+601131737650",
       designation: "Ibu Pengantin Perempuan",
     },
   ],
