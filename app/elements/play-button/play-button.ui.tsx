@@ -5,10 +5,9 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogFooter,
+  DialogHeader,
+  DialogTitle
 } from "@/components/ui/dialog";
 import { useEffect, useRef, useState } from "react";
 
@@ -32,10 +31,10 @@ export function IsPlayMusicDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogHeader></DialogHeader>
       <DialogTitle></DialogTitle>
-      <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0">
+      <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0 m-0 overflow-hidden">
         <div className="h-full flex flex-col relative">
           {/* Video Background */}
-          <div className="absolute top-0 left-0 w-full h-full -z-10">
+          <div className="absolute inset-0 -z-10">
             <video
               src={backgroundVideoConfig.url}
               autoPlay
