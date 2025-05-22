@@ -10,7 +10,10 @@ import SpeechCarousel from "./elements/speech-carousel/speech-carousel.ui";
 export default function Home() {
   return (
     <>
+      <div className="relative w-full overflow-hidden">
         <IsPlayMusicDialog />
+      </div>
+        
       <div className="relative w-full overflow-hidden">
         <CanvaDesign />
       </div>
