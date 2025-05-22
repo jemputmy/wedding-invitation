@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { useEffect, useRef, useState } from "react";
 
@@ -19,7 +19,7 @@ export function IsPlayMusicDialog() {
     audioRef.current = new Audio("/song.mp3");
     audioRef.current.loop = true;
     setOpen(true);
-    document.getElementById('playButton')?.click();
+    document.getElementById("playButton")?.click();
   }, []);
 
   const handlePlayMusic = () => {
@@ -33,21 +33,21 @@ export function IsPlayMusicDialog() {
       <DialogTitle></DialogTitle>
       <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0 m-0 overflow-hidden">
         <div className="h-full flex flex-col relative">
-          {/* Video Background */}
-          <div className="absolute inset-0 -z-10">
+          {/* Video Background - Absolutely Fills Entire Space */}
+          <div className="absolute inset-0 -z-10 bg-black">
             <video
               src={backgroundVideoConfig.url}
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fill p-0 m-0"
             />
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button (Centered at Bottom) */}
           <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10">
-            <DialogFooter className="p-6 bg-white/5  rounded-full sm:justify-center gap-4 border border-white/20">
+            <DialogFooter className="p-6 bg-white/5 rounded-full sm:justify-center gap-4 border border-white/20 backdrop-blur-sm">
               <DialogClose asChild>
                 <Button
                   id="playButton"
