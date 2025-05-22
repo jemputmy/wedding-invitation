@@ -34,7 +34,7 @@ export function IsPlayMusicDialog() {
       <DialogContent className="w-screen h-screen max-w-none max-h-none rounded-none p-0 m-0 overflow-hidden">
         <div className="h-full flex flex-col relative">
           {/* Video Background - Absolutely Fills Entire Space */}
-          <div className="absolute inset-[-5px] -z-10 bg-black">
+          <div className="absolute inset-[-1px] -z-10 bg-black">
             <video
               src={backgroundVideoConfig.url}
               autoPlay
