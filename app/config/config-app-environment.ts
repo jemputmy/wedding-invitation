@@ -4,6 +4,7 @@ import {
   MapPinIcon,
   PhoneIcon,
   PencilSquareIcon,
+  ClockIcon,
 } from "@heroicons/react/24/outline";
 import { ComponentType, JSX } from "react";
 import { FaGoogle, FaApple } from "react-icons/fa";
@@ -116,7 +117,8 @@ export type DockItemKey =
   | "moneyGift"
   | "location"
   | "contact"
-  | "rsvp";
+  | "rsvp"
+  | "tentative";
 
 export interface DockItemConfig {
   key: DockItemKey; // Unique identifier for the dock item
@@ -154,6 +156,12 @@ export const BOTTOM_DOCK_ITEMS: DockItemConfig[] = [
     key: "rsvp",
     label: "RSVP",
     icon: PencilSquareIcon,
+    show: true,
+  },
+  {
+    key: "tentative",
+    label: "Tentatif",
+    icon: ClockIcon,
     show: true,
   },
 ];
@@ -434,6 +442,34 @@ export const RSVP_FORM_CONFIG: RSVPFormConfig = {
     close: "Tutup",
   },
 };
+
+// =====================
+// TENTATIVE CONFIGURATION
+// =====================
+
+/**
+ * Configuration for the Tentative
+ */
+// types
+export interface TentativeConfig {
+  time: string;
+  activity: string;
+}
+
+// text and data
+export const TENTATIVE_TEXT = {
+  title: "Aturcara Majlis",
+  description: "Berikut adalah jadual tentatif majlis kami.",
+  closeButton: "Tutup",
+};
+
+export const TENTATIVE_SCHEDULE: TentativeConfig[] = [
+  { time: "10:00 AM", activity: "Ketibaan tetamu" },
+  { time: "11:00 AM", activity: "Ketibaan pengantin" },
+  { time: "12:00 PM", activity: "Jamuan makan" },
+  { time: "1:00 PM", activity: "Sesi fotografi" },
+  { time: "2:00 PM", activity: "Bersurai" },
+];
 
 // =====================
 // ASSET CONFIGURATIONS

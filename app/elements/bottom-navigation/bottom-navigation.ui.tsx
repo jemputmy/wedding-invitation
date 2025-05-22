@@ -7,6 +7,7 @@ import { LocationDrawer } from "./location/location.ui";
 import { ContactDrawer } from "./contact/contact.ui";
 import { MoneyGiftDrawer } from "./money-gift/money-gift.ui";
 import { RSVPModal } from "../rsvp-form/rsvp-form.ui";
+import { TentativeDrawer } from "./tentative/tentative.ui";
 
 export default function BottomDock() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<Record<DockItemKey, boolean>>({
@@ -15,6 +16,7 @@ export default function BottomDock() {
     location: false,
     contact: false,
     rsvp: false,
+    tentative: false
   });
 
   const openDrawer = (key: DockItemKey) => {
@@ -57,6 +59,10 @@ export default function BottomDock() {
         open={isDrawerOpen.rsvp}
         onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, rsvp: open }))}
       />
+      <TentativeDrawer  open={isDrawerOpen.tentative}
+        onOpenChange={(open) => setIsDrawerOpen((prev) => ({ ...prev, tentative: open }))}
+      />
+      
     </div>
   );
 }
