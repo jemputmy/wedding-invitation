@@ -226,8 +226,8 @@ export const weddingCalendarConfig: CalendarDrawerConfig = {
     title: "Walimatul Urus Amirul & Aisyah",
     description: "",
     location: "Sebening Embun Garden Event Hall",
-    startDate: "2025-06-01T03:00:00Z",
-    endDate: "2025-06-01T08:00:00Z",
+    startDate: "2025-09-20T03:00:00Z", // 11:00 AM MYT is 03:00 AM UTC
+    endDate: "2025-09-20T08:00:00Z", // 04:00 PM MYT is 08:00 AM UTC
     timeZone: "Asia/Kuala_Lumpur",
   },
 };
